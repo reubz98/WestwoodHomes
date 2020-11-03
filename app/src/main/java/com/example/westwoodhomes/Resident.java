@@ -8,11 +8,11 @@ public class Resident extends User
     private String[] Family;
     private List<Bill> Bills;
 
-    private Resident(){
+    public Resident(){
 
     }
 
-    private Resident(String name, String surname, String username, String password, int UnitNo){
+    public Resident(String name, String surname, String username, String password, int UnitNo){
         super(username, password, name, surname);
         this.UnitNo = UnitNo;
     }
