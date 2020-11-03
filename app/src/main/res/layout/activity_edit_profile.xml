@@ -87,17 +87,20 @@
                 />
 
             <Button
+                android:id="@+id/btnAddFam"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:text="@string/addFamily"/>
+                android:text="@string/addFamily" />
 
         </LinearLayout>
+
         <Button
+            android:id="@+id/btnFinal"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/finalize"/>
+            android:text="@string/finalize" />
 
 
 
