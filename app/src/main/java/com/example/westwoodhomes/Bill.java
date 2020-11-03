@@ -6,6 +6,7 @@ public class Bill {
     private String Type;
     private double Amount;
     private Date DateIssued;
+    private boolean Paid;
 
     public Bill(){
 
@@ -15,6 +16,7 @@ public class Bill {
         Type = type;
         Amount = amount;
         DateIssued = dateIssued;
+        Paid = false;
     }
 
     public String getType() {
@@ -39,5 +41,13 @@ public class Bill {
 
     public void setDateIssued(Date dateIssued) {
         DateIssued = dateIssued;
+    }
+
+    public boolean isPaid() {
+        return Paid;
+    }
+
+    public void setPaid(boolean paid) {
+        Paid = paid;
     }
 }
