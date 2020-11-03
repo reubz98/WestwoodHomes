@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">WestwoodHomes</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_review">Review</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_profileU"><u>Profile</u></string>
+    <string name="title_westwood"><u>Westwood Homes</u></string>
+    <string name="news">News</string>
+    <string name="upcoming_bills"><u>Upcoming Bills</u></string>
+    <string name="bills_rent">Rent : </string>
+    <string name="bills_utility">Utilities : </string>
+    <string name="bills_internet">Internet: </string>
+
+    <string name="write_complaint">Write Complaint</string>
+    <string name="write_review">Write Review</string>
+    <string name="title_writeReview"><u>Write Review</u></string>
+    <string name="title_writeComplaint"><u>Write Complaint</u></string>
+    <string name="name">Name : </string>
+    <string name="surname">Surname : </string>
+    <string name="rating">Rating : </string>
+    <string name="unit_no">Unit # : </string>
+    <string name="submit_review">Submit Review</string>
+    <string name="submit_complaint">Submit Complaint</string>
+    <string name="profile_name">Name : </string>
+    <string name="profile_unit">Unit : </string>
+    <string name="profile_family">Family : </string>
+    <string name="profile_paidBills">Paid Bills : </string>
+    <string name="view_family">View Family</string>
+    <string name="view_paidBills">View Bills</string>
+    <string name="editProfile">Edit Profile</string>
+    <string name="title_unit_info"><u>Unit Information</u></string>
+    <string name="unit_bedrooms">Bedrooms : </string>
+    <string name="unit_bathrooms">Bathrooms : </string>
+    <string name="unit_parking">Parking Spots : </string>
+    <string name="addFamily">Add Family</string>
+    <string name="finalize">Finalize</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_edit_profile">EditProfileActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
