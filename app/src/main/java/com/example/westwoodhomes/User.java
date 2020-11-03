@@ -53,8 +53,6 @@ public class User
         this.Surname = Surname;
         this.Username = Username;
         this.Password = Password;
-
-
     }
 
     public User()
