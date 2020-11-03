@@ -16,7 +16,8 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
     }
 
-    public void Register(){
+    public void Register()
+    {
 
     }
 }
