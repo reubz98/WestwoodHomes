@@ -1,5 +1,7 @@
 package com.example.westwoodhomes;
 
-public class fCon {
+import com.google.firebase.database.FirebaseDatabase;
 
+public class fCon {
+    public static FirebaseDatabase fDatabase = FirebaseDatabase.getInstance();
 }
