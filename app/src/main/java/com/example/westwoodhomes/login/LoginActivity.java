@@ -17,7 +17,7 @@ import com.example.westwoodhomes.R;
 
 public class LoginActivity extends AppCompatActivity
 {
-    private DatabaseReference mDatabase;
+    DatabaseReference mDatabase;
     Button login;
     EditText username, password;
     TextView register;
@@ -27,10 +27,10 @@ public class LoginActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        username = (EditText) findViewById(R.id.txtUsername);
-        password = (EditText) findViewById(R.id.txtPass);
-        login = (Button) findViewById(R.id.btnLogin);
-        register = (TextView) findViewById(R.id.tvReg);
+        username = findViewById(R.id.txtUsername);
+        password = findViewById(R.id.txtPass);
+        login = findViewById(R.id.btnLogin);
+        register = findViewById(R.id.tvReg);
 
         login.setOnClickListener(new View.OnClickListener()
         {

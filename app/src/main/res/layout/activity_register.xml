@@ -10,7 +10,7 @@
 
 
     <EditText
-        android:id="@+id/regUser"
+        android:id="@+id/txtUser"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -22,13 +22,13 @@
         android:hint="Username"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/regName"
+        app:layout_constraintBottom_toTopOf="@+id/txtName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/regName"
+        android:id="@+id/txtName"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -40,13 +40,13 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/regSurname"
+        app:layout_constraintBottom_toTopOf="@+id/txtSurname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regUser" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUser" />
 
     <EditText
-        android:id="@+id/regSurname"
+        android:id="@+id/txtSurname"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -58,13 +58,13 @@
         android:hint="Surname"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/regUnit"
+        app:layout_constraintBottom_toTopOf="@+id/txtUnit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
     <EditText
-        android:id="@+id/regPassword"
+        android:id="@+id/txtPassword"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -76,13 +76,13 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/regConfirmPass"
+        app:layout_constraintBottom_toTopOf="@+id/txtConfirmPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regUnit" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUnit" />
 
     <EditText
-        android:id="@+id/regConfirmPass"
+        android:id="@+id/txtConfirmPass"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -97,10 +97,10 @@
         app:layout_constraintBottom_toTopOf="@+id/btnReg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
 
     <EditText
-        android:id="@+id/regUnit"
+        android:id="@+id/txtUnit"
         android:layout_width="217dp"
         android:layout_height="45dp"
         android:layout_marginStart="99dp"
@@ -112,10 +112,10 @@
         android:hint="Unit"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/regPassword"
+        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSurname" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -125,7 +125,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="99dp"
         android:layout_marginBottom="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/regUser"
+        app:layout_constraintBottom_toTopOf="@+id/txtUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -144,7 +144,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regConfirmPass" />
+        app:layout_constraintTop_toBottomOf="@+id/txtConfirmPass" />
 
     <TextView
         android:id="@+id/tvLogin"
