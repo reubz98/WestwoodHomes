@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     tools:context=".ui.review.ReviewFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,9 +14,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="15dp"
             android:text="@string/title_writeReview"
-            android:textSize="24dp"
-            android:paddingLeft="15dp"/>
+            android:textColor="#040202"
+            android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,20 +28,22 @@
                 android:id="@+id/txtName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/name"
                 android:layout_weight="0.3"
                 android:paddingLeft="15dp"
-                />
+                android:text="@string/name"
+                android:textColor="#090505" />
 
             <EditText
                 android:id="@+id/edtName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:layout_weight="0.7"/>
+                android:inputType="textPersonName" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -48,19 +53,22 @@
                 android:id="@+id/txtUnitNo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/unit_no"
                 android:layout_weight="0.3"
-                android:paddingLeft="15dp"/>
+                android:paddingLeft="15dp"
+                android:text="@string/unit_no"
+                android:textColor="#0B0707" />
 
             <EditText
                 android:id="@+id/edtUnitNo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:layout_weight="0.7"/>
+                android:inputType="textPersonName" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -70,17 +78,19 @@
                 android:id="@+id/txtRating"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="@string/rating"
                 android:layout_weight="0.3"
-                android:paddingLeft="15dp"/>
+                android:paddingLeft="15dp"
+                android:text="@string/rating"
+                android:textColor="#070505" />
 
             <EditText
                 android:id="@+id/edtRating"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_weight="0.7"
+                android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:layout_weight="0.7" />
+                android:inputType="textPersonName" />
 
         </LinearLayout>
 
@@ -88,13 +98,15 @@
             android:id="@+id/txtReview"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:paddingLeft="15dp"
             android:text="@string/write_review"
-            android:paddingLeft="15dp"/>
+            android:textColor="#090505" />
 
         <EditText
             android:id="@+id/edtReview"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
             android:ems="10"
             android:inputType="textMultiLine" />
 
@@ -102,28 +114,28 @@
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/submit_review"
-            ></Button>
+            android:background="#0E8EE3"
+            android:text="@string/submit_review"></Button>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
-            android:background="@color/colorText"
-            />
-
+            android:background="@color/colorText" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="15dp"
             android:text="@string/title_writeComplaint"
-            android:textSize="24dp"
-            android:paddingLeft="15dp"/>
+            android:textColor="#090606"
+            android:textSize="24dp" />
 
         <EditText
             android:id="@+id/edtComplaint"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
             android:ems="10"
             android:inputType="textMultiLine" />
 
@@ -131,19 +143,14 @@
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
-            android:text="@string/submit_complaint"
-            ></Button>
+            android:background="#0E8EE3"
+            android:text="@string/submit_complaint"></Button>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
-            android:background="@color/colorText"
-            />
+            android:background="@color/colorText" />
     </LinearLayout>
-
-
-
-
 
 
 </ScrollView>

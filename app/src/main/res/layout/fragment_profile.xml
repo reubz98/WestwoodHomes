@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     tools:context=".ui.profile.ProfileFragment">
 
     <LinearLayout
@@ -13,23 +14,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="15dp"
             android:text="@string/title_profileU"
-            android:textSize="24dp"
-            android:paddingLeft="15dp"/>
+            android:textColor="#090606"
+            android:textSize="24dp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/profile_name"
-            android:text="@string/profile_name"
-            android:paddingLeft="15dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/profile_name" />
+
+        <TextView
             android:id="@+id/profile_unit"
-            android:text="@string/unit_no"
-            android:paddingLeft="15dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/unit_no" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,37 +41,42 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/profile_family"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/profile_family"
-                android:text="@string/profile_family"
+                android:layout_weight="0.7"
+                android:background="#FFFFFF"
                 android:paddingLeft="15dp"
-                android:layout_weight="0.7"/>
+                android:text="@string/profile_family" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
-                android:text="@string/view_family"/>
+                android:background="#0E8EE3"
+                android:text="@string/view_family" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/profile_paidBills"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:id="@+id/profile_paidBills"
-                android:text="@string/profile_paidBills"
+                android:layout_weight="0.7"
+                android:background="#FFFFFF"
                 android:paddingLeft="15dp"
-                android:layout_weight="0.7"/>
+                android:text="@string/profile_paidBills" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
+                android:background="#0E8EE3"
                 android:text="@string/view_paidBills" />
 
         </LinearLayout>
@@ -75,53 +84,55 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="@string/editProfile"
-            android:layout_gravity="center"/>
-
+            android:layout_gravity="center"
+            android:background="#0E8EE3"
+            android:text="@string/editProfile" />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="15dp"
             android:text="@string/title_unit_info"
-            android:textSize="24dp"
-            android:paddingLeft="15dp" />
+            android:textColor="#070404"
+            android:textSize="24dp" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:id="@+id/unit_no"
-            android:text="@string/unit_no"
-            android:paddingLeft="15dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/unit_no" />
+
+        <TextView
             android:id="@+id/unit_bedrooms"
-            android:text="@string/unit_bedrooms"
-            android:paddingLeft="15dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/unit_bedrooms" />
+
+        <TextView
             android:id="@+id/unit_bathrooms"
-            android:text="@string/unit_bathrooms"
-            android:paddingLeft="15dp"/>
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/unit_bathrooms" />
+
+        <TextView
             android:id="@+id/unit_parking"
-            android:text="@string/unit_parking"
-            android:paddingLeft="15dp"/>
-
-
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/unit_parking" />
 
 
     </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
-
 
 
 </ScrollView>

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
+    android:backgroundTint="#BFB8B8"
     tools:context=".admin.ui.complaint.ComplaintFragment">
 
     <LinearLayout
@@ -13,17 +15,32 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Complaints:"/>
+            android:text="Complaints:"
+            android:textColor="#090707"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="#FFFFFF" />
+        </LinearLayout>
+
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>.
-
-
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:background="#0E8EE3"
+            android:gravity="center_horizontal"
+            android:text="Clear"
+            android:textAlignment="center"
+            android:textSize="24sp" />
 
     </LinearLayout>
     <!-- TODO: Update blank fragment layout -->
