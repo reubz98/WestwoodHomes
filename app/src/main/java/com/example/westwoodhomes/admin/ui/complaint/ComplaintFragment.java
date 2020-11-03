@@ -15,7 +15,8 @@ import com.example.westwoodhomes.R;
  * Use the {@link ComplaintFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ComplaintFragment extends Fragment {
+public class ComplaintFragment extends Fragment
+{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -25,7 +26,8 @@ public class ComplaintFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ComplaintFragment() {
+    public ComplaintFragment()
+    {
         // Required empty public constructor
     }
 
@@ -38,7 +40,8 @@ public class ComplaintFragment extends Fragment {
      * @return A new instance of fragment ComplaintFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ComplaintFragment newInstance(String param1, String param2) {
+    public static ComplaintFragment newInstance(String param1, String param2)
+    {
         ComplaintFragment fragment = new ComplaintFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -48,7 +51,8 @@ public class ComplaintFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -58,7 +62,8 @@ public class ComplaintFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_complaint, container, false);
     }

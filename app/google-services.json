@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "268877632501",
+    "firebase_url": "https://westwood-7c65e.firebaseio.com",
+    "project_id": "westwood-7c65e",
+    "storage_bucket": "westwood-7c65e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268877632501:android:24aa37f5158b30dd4f46bc",
+        "android_client_info": {
+          "package_name": "com.example.westwoodhomes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268877632501-ptcv7a7vd95ikhtj38u7o43v6ml1jne8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCVCUG8K395Tqjp1KfVCJxrWnt-4nUGrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268877632501-ptcv7a7vd95ikhtj38u7o43v6ml1jne8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
