@@ -12,6 +12,12 @@ public class Resident extends User
 
     }
 
+    public Resident(String name, String surname, String username, String password, int UnitNo, String[] family){
+        super(username, password, name, surname);
+        this.UnitNo = UnitNo;
+        this.Family = family;
+    }
+
     public Resident(String name, String surname, String username, String password, int UnitNo){
         super(username, password, name, surname);
         this.UnitNo = UnitNo;

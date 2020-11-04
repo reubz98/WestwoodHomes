@@ -50,6 +50,7 @@
                 android:paddingLeft="15dp" />
 
             <EditText
+                android:id="@+id/bill_amount"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
@@ -57,6 +58,7 @@
                 android:paddingLeft="15dp" />
 
             <DatePicker
+                android:id="@+id/bill_date"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:paddingLeft="30dp"
