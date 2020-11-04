@@ -73,10 +73,14 @@ public class LoginActivity extends AppCompatActivity
         Query query = mDatabase.child("user").orderByChild("username").equalTo(username).limitToFirst(1);
         query.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    for (DataSnapshot item : snapshot.getChildren()){
-                        if (item.child("password").getValue(String.class).equals(password)){
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                if (snapshot.exists())
+                {
+                    for (DataSnapshot item : snapshot.getChildren())
+                    {
+                        if (item.child("password").getValue(String.class).equals(password))
+                        {
                             Log.d(TAG, "Password Correct");
                             Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT);
                             MainActivity.userID = snapshot.getKey();

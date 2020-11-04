@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
@@ -13,58 +14,62 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:paddingLeft="15dp"
             android:text="@string/title_westwood"
-            android:textSize="24dp"
-            android:paddingLeft="15dp"/>
+            android:textColor="#100B0B"
+            android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:paddingLeft="15dp"
                 android:text="@string/news"
-                android:paddingLeft="15dp"/>
+                android:textColor="#070505" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.2dp"
-            android:background="@color/colorText"
-            />
+            android:background="@color/colorText" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/upcoming_bills"
-            android:textSize="24dp"
             android:paddingLeft="15dp"
-            />
+            android:text="@string/upcoming_bills"
+            android:textColor="#0C0808"
+            android:textSize="24dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
             android:text="@string/bills_rent"
-            android:paddingLeft="15dp"/>
+            android:textColor="#0B0606" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
             android:text="@string/bills_utility"
-            android:paddingLeft="15dp"/>
+            android:textColor="#070505" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
             android:text="@string/bills_internet"
-            android:paddingLeft="15dp"/>
-
-
-
-
+            android:textColor="#070505" />
 
 
     </LinearLayout>

@@ -25,7 +25,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/profile_name" />
+            android:text="@string/profile_name"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/profile_unit"
@@ -33,7 +34,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/unit_no" />
+            android:text="@string/unit_no"
+            android:textColor="#040303" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,9 +49,11 @@
                 android:layout_weight="0.7"
                 android:background="#FFFFFF"
                 android:paddingLeft="15dp"
-                android:text="@string/profile_family" />
+                android:text="@string/profile_family"
+                android:textColor="#090808" />
 
             <Button
+                android:id="@+id/vFamily"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
@@ -70,9 +74,11 @@
                 android:layout_weight="0.7"
                 android:background="#FFFFFF"
                 android:paddingLeft="15dp"
-                android:text="@string/profile_paidBills" />
+                android:text="@string/profile_paidBills"
+                android:textColor="#090707" />
 
             <Button
+                android:id="@+id/vBills"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0.3"
@@ -82,6 +88,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/edProfile"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="center"
@@ -103,7 +110,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/unit_no" />
+            android:text="@string/unit_no"
+            android:textColor="#050505" />
 
         <TextView
             android:id="@+id/unit_bedrooms"
@@ -111,7 +119,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/unit_bedrooms" />
+            android:text="@string/unit_bedrooms"
+            android:textColor="#070606" />
 
         <TextView
             android:id="@+id/unit_bathrooms"
@@ -119,7 +128,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/unit_bathrooms" />
+            android:text="@string/unit_bathrooms"
+            android:textColor="#000000" />
 
         <TextView
             android:id="@+id/unit_parking"
@@ -127,7 +137,8 @@
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            android:text="@string/unit_parking" />
+            android:text="@string/unit_parking"
+            android:textColor="#050505" />
 
 
     </LinearLayout>
