@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -16,13 +17,18 @@ import android.widget.Toast;
 
 import com.example.westwoodhomes.R;
 import com.example.westwoodhomes.Resident;
+import com.example.westwoodhomes.Unit;
 import com.example.westwoodhomes.fCon;
 import com.example.westwoodhomes.md5;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity
 {
@@ -66,7 +72,27 @@ public class RegisterActivity extends AppCompatActivity
             }
 
         });
+        final List<String> units = new ArrayList<String>();
+        Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
+        unitsQuery.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot item : snapshot.getChildren()){
+                        int unit = item.child("unitNo").getValue(Integer.class);
+                        units.add(Integer.toString(unit));
+                    }
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_dropdown_item, units);
+        unit.setAdapter(adapter);
 
 
     }
@@ -78,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity
         final String confirm = confirmPass.getText().toString();
         final String name = this.name.getText().toString();
         final String surname = this.surname.getText().toString();
-        //final int unit = Integer.parseInt(this.unit.getText().toString());
+        final int unit = Integer.parseInt(this.unit.getSelectedItem().toString());
         Query query = mDatabase.child("user").orderByChild("username").equalTo(user);
         query.addValueEventListener(new ValueEventListener()
         {

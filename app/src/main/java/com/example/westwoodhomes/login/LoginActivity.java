@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity
             }
         });
         mDatabase = fCon.fDatabase.getReference();
-
+        Log.d(TAG, md5.encryptPass("admin"));
 
     }
 
