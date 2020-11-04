@@ -45,10 +45,12 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent());
+                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                finish();
             }
         });
         mDatabase = fCon.fDatabase.getReference();
+
 
     }
 
