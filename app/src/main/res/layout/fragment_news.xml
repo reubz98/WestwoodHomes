@@ -22,6 +22,7 @@
             android:textSize="24dp" />
 
         <ListView
+            android:id="@+id/lsvNews"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF">

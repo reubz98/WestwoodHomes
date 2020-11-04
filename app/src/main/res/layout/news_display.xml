@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/dis_unit_no"
+        android:id="@+id/dis_news_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16dp"/>
 
     <TextView
-        android:id="@+id/dis_bedrooms"
+        android:id="@+id/dis_news_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14dp"/>
-
-    <TextView
-        android:id="@+id/dis_bathrooms"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"/>
-
-    <TextView
-        android:id="@+id/dis_parking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"/>
-
 
 </LinearLayout>

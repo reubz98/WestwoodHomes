@@ -6,11 +6,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -42,6 +44,7 @@ public class UnitsFragment extends Fragment {
     ListView units;
     EditText unitNo, bedrooms, bathrooms, parking;
     Button add;
+    SimpleAdapter sa;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -114,20 +117,26 @@ public class UnitsFragment extends Fragment {
     }
 
     public void displayUnits(){
-        final List<HashMap<String,String>> units = new ArrayList<HashMap<String, String>>();
+
         Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
         unitsQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<HashMap<String,String>> unit = new ArrayList<HashMap<String, String>>();
                 if (snapshot.exists()){
                     for (DataSnapshot item : snapshot.getChildren()){
                         HashMap<String, String> hash = new HashMap<String, String>();
-                        hash.put("unitNo", Integer.toString(item.child("unitNo").getValue(Integer.class)));
-                        hash.put("bedrooms", Integer.toString(item.child("bedrooms").getValue(Integer.class)));
-                        hash.put("bathrooms", Integer.toString(item.child("bathrooms").getValue(Integer.class)));
-                        hash.put("parking", Integer.toString(item.child("parkingSpots").getValue(Integer.class)));
-                        units.add(hash);
+                        hash.put("unitNo", getResources().getString(R.string.unit_no) + item.child("unitNo").getValue(Integer.class));
+                        hash.put("bedrooms", getResources().getString(R.string.unit_bedrooms) +  item.child("bedrooms").getValue(Integer.class));
+                        hash.put("bathrooms", getResources().getString(R.string.unit_bathrooms) +  item.child("bathrooms").getValue(Integer.class));
+                        hash.put("parking", getResources().getString(R.string.unit_parking) +  item.child("parkingSpots").getValue(Integer.class));
+                        unit.add(hash);
                     }
+                    sa = new SimpleAdapter(getContext(), unit, R.layout.unit_display,
+                            new String[]{"unitNo","bedrooms","bathrooms", "parking"},
+                            new int[]{R.id.dis_unit_no, R.id.dis_bedrooms, R.id.dis_bathrooms, R.id.dis_parking});
+                    units.setAdapter(sa);
+                    setListViewHeightBasedOnChildren(units);
                 }
             }
 
@@ -136,9 +145,28 @@ public class UnitsFragment extends Fragment {
 
             }
         });
-        SimpleAdapter sa = new SimpleAdapter(getContext(), units, R.layout.unit_display,
-                new String[]{"unitNo","bedrooms","bathrooms", "parking"},
-                new int[]{R.id.dis_unit_no, R.id.dis_bedrooms, R.id.dis_bathrooms, R.id.dis_parking});
-        this.units.setAdapter(sa);
+
+    }
+
+    private void setListViewHeightBasedOnChildren(ListView listView) {
+        Log.e("Listview Size ", "" + listView.getCount());
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }
