@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity
         final String confirm = confirmPass.getText().toString();
         final String name = this.name.getText().toString();
         final String surname = this.surname.getText().toString();
-        final int unit = Integer.parseInt(this.unit.getText().toString());
+        //final int unit = Integer.parseInt(this.unit.getText().toString());
         Query query = mDatabase.child("user").orderByChild("username").equalTo(user);
         query.addValueEventListener(new ValueEventListener()
         {
