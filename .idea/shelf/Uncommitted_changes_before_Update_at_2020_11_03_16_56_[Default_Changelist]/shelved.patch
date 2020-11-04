@@ -1,0 +1,74 @@
+Index: app/src/main/res/layout/activity_edit_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\".EditProfileActivity\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtName\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:text=\"@string/name\"\r\n            android:layout_weight=\"0.3\"\r\n            android:paddingLeft=\"15dp\"\r\n            />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtName\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\"\r\n            android:layout_weight=\"0.7\"/>\r\n\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtSurname\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:text=\"@string/surname\"\r\n            android:layout_weight=\"0.3\"\r\n            android:paddingLeft=\"15dp\"\r\n            />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtSurname\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\"\r\n            android:layout_weight=\"0.7\"/>\r\n\r\n    </LinearLayout>\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtFamily\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:text=\"@string/profile_family\"\r\n            android:layout_weight=\"0.3\"\r\n            android:paddingLeft=\"15dp\"\r\n            />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"30dp\"\r\n                android:text=\"Family member 1\"\r\n                android:paddingLeft=\"15dp\"\r\n                />\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"30dp\"\r\n                android:text=\"Family member 1\"\r\n                android:paddingLeft=\"15dp\"\r\n                />\r\n\r\n            <Button\r\n                android:id=\"@+id/btnAddFam\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"40dp\"\r\n                android:layout_gravity=\"center_horizontal\"\r\n                android:text=\"@string/addFamily\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnFinal\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"40dp\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            android:text=\"@string/finalize\" />\r\n\r\n\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_edit_profile.xml	(revision ac6f16d1b26ed6084f6fb687153c8e0bdaef0cb2)
++++ app/src/main/res/layout/activity_edit_profile.xml	(date 1604415091924)
+@@ -36,7 +36,7 @@
+         android:orientation="horizontal">
+ 
+         <TextView
+-            android:id="@+id/txtSurname"
++            android:id="@+id/txtRegSurname"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:text="@string/surname"
+Index: app/src/main/res/layout/activity_register.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#BFB8B8\"\r\n    android:backgroundTint=\"#BFB8B8\"\r\n    tools:context=\".login.RegisterActivity\">\r\n\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtUser\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"17dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Username\"\r\n        android:inputType=\"textPersonName\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtName\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/imageView3\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtName\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Name\"\r\n        android:inputType=\"textPersonName\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtSurname\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtUser\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtSurname\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Surname\"\r\n        android:inputType=\"textPersonName\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtUnit\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtName\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtPassword\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Password\"\r\n        android:inputType=\"textPassword\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtConfirmPass\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtUnit\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtConfirmPass\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"15dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Confirm Password\"\r\n        android:inputType=\"textPassword\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/btnReg\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtPassword\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/txtUnit\"\r\n        android:layout_width=\"217dp\"\r\n        android:layout_height=\"45dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"10dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"10dp\"\r\n        android:background=\"#FFFFFF\"\r\n        android:ems=\"10\"\r\n        android:hint=\"Unit\"\r\n        android:inputType=\"textPersonName\"\r\n        android:textAlignment=\"center\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtPassword\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtSurname\" />\r\n\r\n    <ImageView\r\n        android:id=\"@+id/imageView3\"\r\n        android:layout_width=\"192dp\"\r\n        android:layout_height=\"137dp\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"16dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"17dp\"\r\n        app:layout_constraintBottom_toTopOf=\"@+id/txtUser\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        app:srcCompat=\"@drawable/west\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/btnReg\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"5dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"49dp\"\r\n        android:text=\"Register\"\r\n        android:background=\"#4C8EDF\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/txtConfirmPass\" />\r\n\r\n    <TextView\r\n        android:id=\"@+id/tvLogin\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginStart=\"99dp\"\r\n        android:layout_marginTop=\"13dp\"\r\n        android:layout_marginEnd=\"99dp\"\r\n        android:layout_marginBottom=\"20dp\"\r\n        android:text=\"Login\"\r\n        android:textColor=\"#0849EC\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/btnReg\" />\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_register.xml	(revision ac6f16d1b26ed6084f6fb687153c8e0bdaef0cb2)
++++ app/src/main/res/layout/activity_register.xml	(date 1604415091933)
+@@ -40,13 +40,13 @@
+         android:hint="Name"
+         android:inputType="textPersonName"
+         android:textAlignment="center"
+-        app:layout_constraintBottom_toTopOf="@+id/txtSurname"
++        app:layout_constraintBottom_toTopOf="@+id/txtRegSurname"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/txtUser" />
+ 
+     <EditText
+-        android:id="@+id/txtSurname"
++        android:id="@+id/txtRegSurname"
+         android:layout_width="217dp"
+         android:layout_height="45dp"
+         android:layout_marginStart="99dp"
+@@ -64,7 +64,7 @@
+         app:layout_constraintTop_toBottomOf="@+id/txtName" />
+ 
+     <EditText
+-        android:id="@+id/txtPassword"
++        android:id="@+id/txtRegPassword"
+         android:layout_width="217dp"
+         android:layout_height="45dp"
+         android:layout_marginStart="99dp"
+@@ -97,7 +97,7 @@
+         app:layout_constraintBottom_toTopOf="@+id/btnReg"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
++        app:layout_constraintTop_toBottomOf="@+id/txtRegPassword" />
+ 
+     <EditText
+         android:id="@+id/txtUnit"
+@@ -112,10 +112,10 @@
+         android:hint="Unit"
+         android:inputType="textPersonName"
+         android:textAlignment="center"
+-        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
++        app:layout_constraintBottom_toTopOf="@+id/txtRegPassword"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/txtSurname" />
++        app:layout_constraintTop_toBottomOf="@+id/txtRegSurname" />
+ 
+     <ImageView
+         android:id="@+id/imageView3"
