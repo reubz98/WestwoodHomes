@@ -62,10 +62,10 @@
                 android:id="@+id/edtUnitNo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_weight="0.69"
                 android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -87,10 +87,10 @@
                 android:id="@+id/edtRating"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_weight="0.78"
                 android:background="#FFFFFF"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -111,6 +111,7 @@
             android:inputType="textMultiLine" />
 
         <Button
+            android:id="@+id/btnSubmitRev"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"
@@ -132,14 +133,25 @@
             android:textSize="24dp" />
 
         <EditText
-            android:id="@+id/edtComplaint"
+            android:id="@+id/edtType"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/edtDes"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFFFFF"
             android:ems="10"
             android:inputType="textMultiLine" />
 
+
+
         <Button
+            android:id="@+id/btnSubmitCom"
             android:layout_width="120dp"
             android:layout_height="60dp"
             android:layout_gravity="center_horizontal"

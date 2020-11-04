@@ -7,7 +7,7 @@
     <string name="title_profile">Profile</string>
     <string name="title_profileU"><u>Profile</u></string>
     <string name="title_westwood"><u>Westwood Homes</u></string>
-    <string name="news">News</string>
+    <string name="news"><u>News</u></string>
     <string name="upcoming_bills"><u>Upcoming Bills</u></string>
     <string name="bills_rent">Rent : </string>
     <string name="bills_utility">Utilities : </string>
@@ -62,6 +62,7 @@
 
     <string name="home_second">Home Second</string>
     <string name="title_activity_login">LoginActivity</string>
+
     <string name="Loginbutt"><u>Login</u></string>
     <string name="title_admin_add_bill">Add Bill</string>
     <string name="title_admin_add_unit">Add Unit</string>

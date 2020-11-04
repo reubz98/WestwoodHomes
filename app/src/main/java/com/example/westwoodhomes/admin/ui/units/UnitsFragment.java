@@ -89,7 +89,8 @@ public class UnitsFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         units = getView().findViewById(R.id.lsvUnits);
         unitNo = getView().findViewById(R.id.edit_unit_number);
@@ -98,16 +99,19 @@ public class UnitsFragment extends Fragment {
         parking = getView().findViewById(R.id.edit_unit_parking);
         add = getView().findViewById(R.id.btnAddUnit);
         mDatabase = fCon.fDatabase.getReference();
-        add.setOnClickListener(new View.OnClickListener() {
+        add.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 addUnit();
             }
         });
         displayUnits();
     }
 
-    public void addUnit(){
+    public void addUnit()
+    {
         final int unitNo = Integer.parseInt(this.unitNo.getText().toString());
         final int bedrooms = Integer.parseInt(this.bedrooms.getText().toString());
         final int bathrooms = Integer.parseInt(this.bathrooms.getText().toString());
@@ -116,12 +120,15 @@ public class UnitsFragment extends Fragment {
         mDatabase.child("unit").child(Integer.toString(unitNo)).setValue(unit);
     }
 
-    public void displayUnits(){
+    public void displayUnits()
+    {
 
         Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
-        unitsQuery.addValueEventListener(new ValueEventListener() {
+        unitsQuery.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 List<HashMap<String,String>> unit = new ArrayList<HashMap<String, String>>();
                 if (snapshot.exists()){
                     for (DataSnapshot item : snapshot.getChildren()){

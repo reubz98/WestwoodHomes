@@ -63,9 +63,11 @@ public class EditProfileActivity extends AppCompatActivity
 
     public void createResident(){
         Query residentQuery = mDatabase.child("user").child(MainActivity.userID);
-        residentQuery.addValueEventListener(new ValueEventListener() {
+        residentQuery.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 String strName = snapshot.child("name").getValue(String.class);
                 String strSurname = snapshot.child("surname").getValue(String.class);
                 String strUsername = snapshot.child("username").getValue(String.class);
@@ -73,10 +75,12 @@ public class EditProfileActivity extends AppCompatActivity
                 name.setText(strName);
                 surname.setText(strSurname);
                 int UnitNo = snapshot.child("unitNo").getValue(Integer.class);
-                if (snapshot.child("family").hasChildren()){
+                if (snapshot.child("family").hasChildren())
+                {
                     List<HashMap<String,String>> fam = new ArrayList<>();
                     int count = 0;
-                    for (DataSnapshot snap : snapshot.child("family").getChildren()){
+                    for (DataSnapshot snap : snapshot.child("family").getChildren())
+                    {
                         HashMap<String,String> hash = new HashMap<>();
                         hash.put("name",snap.getValue(String.class));
                         fam.add(hash);
@@ -97,7 +101,8 @@ public class EditProfileActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
@@ -120,29 +125,36 @@ public class EditProfileActivity extends AppCompatActivity
         this.familyName.setText("");
     }
 
-    public void finalizeProfile(){
+    public void finalizeProfile()
+    {
         String name = this.name.getText().toString();
         String surname = this.surname.getText().toString();
         mDatabase.child("user").child(MainActivity.userID).child("name").setValue(name);
         mDatabase.child("user").child(MainActivity.userID).child("surname").setValue(surname);
         int count = 1;
-        for (String item : family){
+        for (String item : family)
+        {
             mDatabase.child("user").child(MainActivity.userID).child("family").child(Integer.toString(count)).setValue(item);
             count++;
         }
         finish();
+        /*this.name.setText("");
+        this.surname.setText("");*/
     }
 
-    private void setListViewHeightBasedOnChildren(ListView listView) {
+    private void setListViewHeightBasedOnChildren(ListView listView)
+    {
         Log.e("Listview Size ", "" + listView.getCount());
         ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
+        if (listAdapter == null)
+        {
 
             return;
         }
 
         int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
+        for (int i = 0; i < listAdapter.getCount(); i++)
+        {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();

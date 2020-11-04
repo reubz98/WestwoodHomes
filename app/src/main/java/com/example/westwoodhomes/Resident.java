@@ -8,7 +8,8 @@ public class Resident extends User
     private String[] Family;
     private List<Bill> Bills;
 
-    public Resident(){
+    public Resident()
+    {
 
     }
 

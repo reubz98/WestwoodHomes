@@ -6,11 +6,13 @@ public class Review {
     private int Rating;
     private int UnitNo;
 
-    public Review(){
+    public Review()
+    {
 
     }
 
-    public Review(String reviewBody, String name, int rating, int unitNo){
+    public Review(String reviewBody, String name, int rating, int unitNo)
+    {
         ReviewBody = reviewBody;
         Name = name;
         Rating = rating;
