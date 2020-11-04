@@ -11,11 +11,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.example.westwoodhomes.MainActivity;
 import com.example.westwoodhomes.R;
 import com.example.westwoodhomes.Resident;
 import com.example.westwoodhomes.User;
 import com.example.westwoodhomes.fCon;
+import com.example.westwoodhomes.md5;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -85,14 +89,19 @@ public class RegisterActivity extends AppCompatActivity
                 if (snapshot.exists())
                 {
                     Log.d(TAG, "Username taken.");
+                    Toast.makeText(RegisterActivity.this, "Username Taken", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Log.d(TAG, "Username exists.");
-                    if (pass.equals(confirmPass))
+                else {
+                    Log.d(TAG, "Username is free.");
+                    if (pass.equals(confirm))
                     {
-                        Resident res = new Resident(name, surname,user,pass,unit);
+                        Resident res = new Resident(name, surname,user, md5.encryptPass(pass),unit);
                         mDatabase.child("user").push().setValue(res);
+
+                        Toast.makeText(RegisterActivity.this, "User Created.",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     }
+
                 }
             }
 
