@@ -10,6 +10,7 @@ public class md5
         MessageDigest md5 = MessageDigest.getInstance("MD5");
         md5.update(data);
         return md5.digest();
+
     }
 
     public static String encryptPass(String password)
