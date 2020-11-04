@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.westwoodhomes.EditProfileActivity;
+import com.example.westwoodhomes.MainActivity;
 import com.example.westwoodhomes.R;
 import com.example.westwoodhomes.Resident;
 import com.example.westwoodhomes.fCon;
@@ -24,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.net.HttpCookie;
@@ -97,7 +99,6 @@ public class ProfileFragment extends Fragment
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
-
         super.onViewCreated(view, savedInstanceState);
         profile = getView().findViewById(R.id.edProfile);
         profile_name = getView().findViewById(R.id.profile_name);
@@ -105,17 +106,23 @@ public class ProfileFragment extends Fragment
         profile_Bills = getView().findViewById(R.id.profile_Bills);
 
         mDatabase = fCon.fDatabase.getReference();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase
-        mDatabase.addValueEventListener(new ValueEventListener()
+        Query profileQuery = mDatabase.child("user").child(MainActivity.userID);
+        profileQuery.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
                 List <String> list = new ArrayList<>();
-                for (snapshot sn : snapshot.getChildren())
+                for (DataSnapshot sn : snapshot.getChildren())
                 {
                    String name = sn.child("name").getValue(String.class);
+                   String surname = sn.child("surname").getValue(String.class);
+                   String unitNo = Integer.toString(sn.child("unitNo").getValue(int.class));
+
+
+                   String fullName = name + " " + surname;
+                   profile_name.setText(getResources().getString(R.string.profile_name) + " " + fullName);
+                   profile_unit.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
                 }
             }
 

@@ -101,6 +101,7 @@ public class UnitsFragment extends Fragment {
                 addUnit();
             }
         });
+        displayUnits();
     }
 
     public void addUnit(){
