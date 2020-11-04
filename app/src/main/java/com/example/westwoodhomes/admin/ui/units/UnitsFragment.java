@@ -113,7 +113,7 @@ public class UnitsFragment extends Fragment {
         final int bathrooms = Integer.parseInt(this.bathrooms.getText().toString());
         final int parking = Integer.parseInt(this.parking.getText().toString());
         Unit unit = new Unit(unitNo, bedrooms, bathrooms, parking);
-        mDatabase.child("unit").push().setValue(unit);
+        mDatabase.child("unit").child(Integer.toString(unitNo)).setValue(unit);
     }
 
     public void displayUnits(){

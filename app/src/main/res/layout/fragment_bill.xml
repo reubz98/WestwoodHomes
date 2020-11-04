@@ -43,6 +43,7 @@
                 android:textSize="24dp" />
 
             <EditText
+                android:id="@+id/bill_type"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
@@ -51,6 +52,8 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:inputType="numberDecimal"
                 android:paddingLeft="15dp" />
 
             <DatePicker
