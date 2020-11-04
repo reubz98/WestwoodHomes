@@ -38,7 +38,8 @@ public class ReviewFragment extends Fragment {
      * @return A new instance of fragment ReviewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ReviewFragment newInstance(String param1, String param2) {
+    public static ReviewFragment newInstance(String param1, String param2)
+    {
         ReviewFragment fragment = new ReviewFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);

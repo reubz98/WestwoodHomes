@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     android:orientation="vertical"
+    android:textAlignment="center"
     tools:context=".admin.ui.bill.BillFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,18 +19,20 @@
             android:paddingLeft="15dp"
             android:text="@string/title_admin_bill"
             android:textColor="#090606"
-            android:textSize="24dp"/>
+            android:textSize="24dp" />
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
         </ListView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -35,33 +40,35 @@
                 android:paddingLeft="15dp"
                 android:text="@string/title_admin_add_bill"
                 android:textColor="#090606"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="15dp"/>
+                android:background="#FFFFFF"
+                android:paddingLeft="15dp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="15dp"/>
+                android:paddingLeft="15dp" />
 
             <DatePicker
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"/>
+                android:paddingLeft="30dp"
+                android:paddingRight="15dp"
+                android:textAlignment="center" />
 
             <Button
+                android:id="@+id/btnAddBill"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center_horizontal"
+                android:background="#0E8EE3"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:layout_gravity="center_horizontal"/>
-
-
-
+                tools:text="Add Bill" />
 
 
         </LinearLayout>
@@ -69,15 +76,6 @@
     </LinearLayout>
 
     <!-- TODO: Update blank fragment layout -->
-
-
-
-
-
-
-
-
-
 
 
 </ScrollView>
