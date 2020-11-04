@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,11 +34,17 @@ public class RegisterActivity extends AppCompatActivity
         setContentView(R.layout.activity_register);
         mDatabase = fCon.fDatabase.getReference();
         username = (EditText) findViewById(R.id.regUser);
+        username.addTextChangedListener(watcher);
         name = findViewById(R.id.regName);
+        name.addTextChangedListener(watcher);
         surname = findViewById(R.id.regSurname);
+        surname.addTextChangedListener(watcher);
         pass = findViewById(R.id.regPassword);
+        pass.addTextChangedListener(watcher);
         confirmPass = findViewById(R.id.regConfirmPass);
+        confirmPass.addTextChangedListener(watcher);
         unit = findViewById(R.id.regUnit);
+        unit.addTextChangedListener(watcher);
         register = findViewById(R.id.btnReg);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity
                 }
                 else{
                     Log.d(TAG, "Username exists.");
-                    if (pass.equals(confirmPass)) {
+                    if (pass.equals(confirm)) {
                         Resident res = new Resident(name, surname,user,pass,unit);
                         mDatabase.child("user").push().setValue(res);
                     }
@@ -76,4 +84,27 @@ public class RegisterActivity extends AppCompatActivity
         });
 
     }
+
+    private final TextWatcher watcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (username.getText().toString().length() == 0 || pass.getText().toString().length() == 0 ||
+                confirmPass.getText().toString().length() == 0 || name.getText().toString().length() == 0 ||
+                surname.getText().toString().length() == 0 || unit.getText().toString().length() == 0){
+                register.setEnabled(true);
+            } else {
+                register.setEnabled(true);
+            }
+        }
+    };
 }
