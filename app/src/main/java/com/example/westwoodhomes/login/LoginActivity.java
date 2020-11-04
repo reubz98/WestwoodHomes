@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.westwoodhomes.MainActivity;
 import com.example.westwoodhomes.fCon;
+import com.example.westwoodhomes.md5;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -68,7 +69,7 @@ public class LoginActivity extends AppCompatActivity
     private void Login()
     {
         final String username = this.username.getText().toString();
-        final String password = this.password.getText().toString();
+        final String password = md5.encryptPass(this.password.getText().toString());
         Query query = mDatabase.child("user").orderByChild("username").equalTo(username).limitToFirst(1);
         query.addValueEventListener(new ValueEventListener() {
             @Override
