@@ -7,17 +7,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.westwoodhomes.MainActivity;
 import com.example.westwoodhomes.R;
 import com.example.westwoodhomes.Resident;
-import com.example.westwoodhomes.User;
 import com.example.westwoodhomes.fCon;
 import com.example.westwoodhomes.md5;
 import com.google.firebase.database.DataSnapshot;
