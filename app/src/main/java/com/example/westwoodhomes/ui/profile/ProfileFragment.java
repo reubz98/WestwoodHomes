@@ -8,14 +8,29 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.LiveFolders;
+import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.westwoodhomes.EditProfileActivity;
 import com.example.westwoodhomes.R;
 import com.example.westwoodhomes.Resident;
+import com.example.westwoodhomes.fCon;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.net.HttpCookie;
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +39,9 @@ import com.example.westwoodhomes.Resident;
  */
 public class ProfileFragment extends Fragment
 {
-    Button profile, family, bills;
+    Button profile;
+    DatabaseReference mDatabase;
+    TextView profile_name, profile_unit, profile_Bills;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -62,7 +79,8 @@ public class ProfileFragment extends Fragment
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null)
+        {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -82,8 +100,31 @@ public class ProfileFragment extends Fragment
 
         super.onViewCreated(view, savedInstanceState);
         profile = getView().findViewById(R.id.edProfile);
-        family = getView().findViewById(R.id.vFamily);
-        bills = getView().findViewById(R.id.vBills);
+        profile_name = getView().findViewById(R.id.profile_name);
+        profile_unit = getView().findViewById(R.id.profile_unit);
+        profile_Bills = getView().findViewById(R.id.profile_Bills);
+
+        mDatabase = fCon.fDatabase.getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase
+        mDatabase.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                List <String> list = new ArrayList<>();
+                for (snapshot sn : snapshot.getChildren())
+                {
+                   String name = sn.child("name").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
 
         profile.setOnClickListener(new View.OnClickListener()
         {
@@ -95,14 +136,8 @@ public class ProfileFragment extends Fragment
             }
         });
 
-        family.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
 
-            }
-        });
+
 
 
     }

@@ -52,14 +52,6 @@
                 android:text="@string/profile_family"
                 android:textColor="#090808" />
 
-            <Button
-                android:id="@+id/vFamily"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:background="#0E8EE3"
-                android:text="@string/view_family" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -68,22 +60,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/profile_paidBills"
+                android:id="@+id/profile_Bills"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="0.7"
                 android:background="#FFFFFF"
                 android:paddingLeft="15dp"
-                android:text="@string/profile_paidBills"
+                android:text="Bills: "
                 android:textColor="#090707" />
-
-            <Button
-                android:id="@+id/vBills"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:background="#0E8EE3"
-                android:text="@string/view_paidBills" />
 
         </LinearLayout>
 

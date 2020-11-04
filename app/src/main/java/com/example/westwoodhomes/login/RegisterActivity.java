@@ -74,11 +74,14 @@ public class RegisterActivity extends AppCompatActivity
         });
         final List<String> units = new ArrayList<String>();
         Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
-        unitsQuery.addValueEventListener(new ValueEventListener() {
+        unitsQuery.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 if (snapshot.exists()){
-                    for (DataSnapshot item : snapshot.getChildren()){
+                    for (DataSnapshot item : snapshot.getChildren())
+                    {
                         int unit = item.child("unitNo").getValue(Integer.class);
                         units.add(Integer.toString(unit));
                     }
@@ -86,7 +89,8 @@ public class RegisterActivity extends AppCompatActivity
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
