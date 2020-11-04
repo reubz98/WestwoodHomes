@@ -125,7 +125,7 @@ public class UnitsFragment extends Fragment {
                         hash.put("unitNo", Integer.toString(item.child("unitNo").getValue(Integer.class)));
                         hash.put("bedrooms", Integer.toString(item.child("bedrooms").getValue(Integer.class)));
                         hash.put("bathrooms", Integer.toString(item.child("bathrooms").getValue(Integer.class)));
-                        hash.put("parking",Integer.toString(item.child("parking").getValue(Integer.class)));
+                        hash.put("parking",Integer.toString(item.child("parkingSpots").getValue(Integer.class)));
                         units.add(hash);
                     }
                 }
