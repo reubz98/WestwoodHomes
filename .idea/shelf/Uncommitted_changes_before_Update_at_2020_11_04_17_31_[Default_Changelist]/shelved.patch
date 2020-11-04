@@ -1,0 +1,197 @@
+Index: app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.login;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.ArrayAdapter;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.Spinner;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\n\r\nimport com.example.westwoodhomes.R;\r\nimport com.example.westwoodhomes.Resident;\r\nimport com.example.westwoodhomes.Unit;\r\nimport com.example.westwoodhomes.fCon;\r\nimport com.example.westwoodhomes.md5;\r\nimport com.google.firebase.database.ChildEventListener;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class RegisterActivity extends AppCompatActivity\r\n{\r\n    final String TAG = \"RegisterActivity\";\r\n    DatabaseReference mDatabase;\r\n    EditText username, name, surname, pass, confirmPass;\r\n    Spinner unit;\r\n    Button register;\r\n    TextView Login;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState)\r\n    {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_register);\r\n        mDatabase = fCon.fDatabase.getReference();\r\n        username = (EditText) findViewById(R.id.regUser);\r\n        name = findViewById(R.id.regName);\r\n        surname = findViewById(R.id.regSurname);\r\n        pass = findViewById(R.id.regPassword);\r\n        confirmPass = findViewById(R.id.regConfirmPass);\r\n        unit = findViewById(R.id.spUnit);\r\n        register = findViewById(R.id.btnReg);\r\n        Login = findViewById(R.id.tvLogin);\r\n\r\n        register.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View v)\r\n            {\r\n                Register();\r\n            }\r\n        });\r\n\r\n        Login.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View v)\r\n            {\r\n                startActivity(new Intent(getApplicationContext(), LoginActivity.class));\r\n                finish();\r\n            }\r\n\r\n        });\r\n        final List<String> units = new ArrayList<String>();\r\n        Query unitsQuery = mDatabase.child(\"unit\").orderByChild(\"unitNo\");\r\n        unitsQuery.addValueEventListener(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                if (snapshot.exists()){\r\n                    for (DataSnapshot item : snapshot.getChildren()){\r\n                        int unit = item.child(\"unitNo\").getValue(Integer.class);\r\n                        units.add(Integer.toString(unit));\r\n                    }\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n            }\r\n        });\r\n        ArrayAdapter<String> adapter = new ArrayAdapter<String>(\r\n                this, android.R.layout.simple_spinner_dropdown_item, units);\r\n        unit.setAdapter(adapter);\r\n\r\n\r\n    }\r\n\r\n    public void Register()\r\n    {\r\n        final String user = username.getText().toString();\r\n        final String pass = this.pass.getText().toString();\r\n        final String confirm = confirmPass.getText().toString();\r\n        final String name = this.name.getText().toString();\r\n        final String surname = this.surname.getText().toString();\r\n        final int unit = Integer.parseInt(this.unit.getSelectedItem().toString());\r\n        Query query = mDatabase.child(\"user\").orderByChild(\"username\").equalTo(user);\r\n        query.addValueEventListener(new ValueEventListener()\r\n        {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot)\r\n            {\r\n                if (snapshot.exists())\r\n                {\r\n                    Log.d(TAG, \"Username taken.\");\r\n                    Toast.makeText(RegisterActivity.this, \"Username Taken\", Toast.LENGTH_SHORT).show();\r\n                }\r\n                else {\r\n                    Log.d(TAG, \"Username is free.\");\r\n                    if (pass.equals(confirm))\r\n                    {\r\n                        Resident res = new Resident(name, surname,user, md5.encryptPass(pass),unit);\r\n                        mDatabase.child(\"user\").push().setValue(res);\r\n\r\n                        Toast.makeText(RegisterActivity.this, \"User Created.\",Toast.LENGTH_SHORT).show();\r\n                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));\r\n                    }\r\n\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error)\r\n            {\r\n                Log.d(TAG, error.getMessage());\r\n            }\r\n        });\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java	(revision 5320c5647c1c58afbb8f53f94072d184302fcbbf)
++++ app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java	(date 1604499071144)
+@@ -74,11 +74,14 @@
+         });
+         final List<String> units = new ArrayList<String>();
+         Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
+-        unitsQuery.addValueEventListener(new ValueEventListener() {
++        unitsQuery.addValueEventListener(new ValueEventListener()
++        {
+             @Override
+-            public void onDataChange(@NonNull DataSnapshot snapshot) {
++            public void onDataChange(@NonNull DataSnapshot snapshot)
++            {
+                 if (snapshot.exists()){
+-                    for (DataSnapshot item : snapshot.getChildren()){
++                    for (DataSnapshot item : snapshot.getChildren())
++                    {
+                         int unit = item.child("unitNo").getValue(Integer.class);
+                         units.add(Integer.toString(unit));
+                     }
+@@ -86,7 +89,8 @@
+             }
+ 
+             @Override
+-            public void onCancelled(@NonNull DatabaseError error) {
++            public void onCancelled(@NonNull DatabaseError error)
++            {
+ 
+             }
+         });
+Index: app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.ui.profile;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.provider.LiveFolders;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\n\r\nimport com.example.westwoodhomes.EditProfileActivity;\r\nimport com.example.westwoodhomes.R;\r\nimport com.example.westwoodhomes.Resident;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ProfileFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ProfileFragment extends Fragment\r\n{\r\n    Button profile, family, bills;\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public ProfileFragment()\r\n    {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ProfileFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static ProfileFragment newInstance(String param1, String param2)\r\n    {\r\n        ProfileFragment fragment = new ProfileFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState)\r\n    {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState)\r\n    {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_profile, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)\r\n    {\r\n\r\n        super.onViewCreated(view, savedInstanceState);\r\n        profile = getView().findViewById(R.id.edProfile);\r\n        family = getView().findViewById(R.id.vFamily);\r\n        bills = getView().findViewById(R.id.vBills);\r\n\r\n        profile.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View view)\r\n            {\r\n                startActivity(new Intent(getActivity(), EditProfileActivity.class));\r\n\r\n            }\r\n        });\r\n\r\n        family.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View view)\r\n            {\r\n\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java	(revision 5320c5647c1c58afbb8f53f94072d184302fcbbf)
++++ app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java	(date 1604503849336)
+@@ -8,14 +8,29 @@
+ import androidx.fragment.app.Fragment;
+ 
+ import android.provider.LiveFolders;
++import android.util.Log;
++import android.view.Display;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.Button;
++import android.widget.TextView;
+ 
+ import com.example.westwoodhomes.EditProfileActivity;
+ import com.example.westwoodhomes.R;
+ import com.example.westwoodhomes.Resident;
++import com.example.westwoodhomes.fCon;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
++
++import java.net.HttpCookie;
++import java.util.ArrayList;
++import java.util.List;
++
++import static android.content.ContentValues.TAG;
+ 
+ /**
+  * A simple {@link Fragment} subclass.
+@@ -24,7 +39,9 @@
+  */
+ public class ProfileFragment extends Fragment
+ {
+-    Button profile, family, bills;
++    Button profile;
++    DatabaseReference mDatabase;
++    TextView profile_name, profile_unit, profile_Bills;
+     // TODO: Rename parameter arguments, choose names that match
+     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+     private static final String ARG_PARAM1 = "param1";
+@@ -62,7 +79,8 @@
+     public void onCreate(Bundle savedInstanceState)
+     {
+         super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
++        if (getArguments() != null)
++        {
+             mParam1 = getArguments().getString(ARG_PARAM1);
+             mParam2 = getArguments().getString(ARG_PARAM2);
+         }
+@@ -82,8 +100,31 @@
+ 
+         super.onViewCreated(view, savedInstanceState);
+         profile = getView().findViewById(R.id.edProfile);
+-        family = getView().findViewById(R.id.vFamily);
+-        bills = getView().findViewById(R.id.vBills);
++        profile_name = getView().findViewById(R.id.profile_name);
++        profile_unit = getView().findViewById(R.id.profile_unit);
++        profile_Bills = getView().findViewById(R.id.profile_Bills);
++
++        mDatabase = fCon.fDatabase.getReference();
++        mDatabase = FirebaseDatabase.getInstance().getReference();
++        mDatabase
++        mDatabase.addValueEventListener(new ValueEventListener()
++        {
++            @Override
++            public void onDataChange(@NonNull DataSnapshot snapshot)
++            {
++                List <String> list = new ArrayList<>();
++                for (snapshot sn : snapshot.getChildren())
++                {
++                   String name = sn.child("name").getValue(String.class);
++                }
++            }
++
++            @Override
++            public void onCancelled(@NonNull DatabaseError error)
++            {
++
++            }
++        });
+ 
+         profile.setOnClickListener(new View.OnClickListener()
+         {
+@@ -95,14 +136,8 @@
+             }
+         });
+ 
+-        family.setOnClickListener(new View.OnClickListener()
+-        {
+-            @Override
+-            public void onClick(View view)
+-            {
+ 
+-            }
+-        });
++
+ 
+ 
+     }
+Index: app/src/main/res/layout/fragment_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#BFB8B8\"\r\n    tools:context=\".ui.profile.ProfileFragment\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/title_profileU\"\r\n            android:textColor=\"#090606\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/profile_name\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/profile_name\"\r\n            android:textColor=\"#000000\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/profile_unit\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/unit_no\"\r\n            android:textColor=\"#040303\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"60dp\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/profile_family\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.7\"\r\n                android:background=\"#FFFFFF\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/profile_family\"\r\n                android:textColor=\"#090808\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/vFamily\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.3\"\r\n                android:background=\"#0E8EE3\"\r\n                android:text=\"@string/view_family\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"60dp\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/profile_paidBills\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:layout_weight=\"0.7\"\r\n                android:background=\"#FFFFFF\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/profile_paidBills\"\r\n                android:textColor=\"#090707\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/vBills\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.3\"\r\n                android:background=\"#0E8EE3\"\r\n                android:text=\"@string/view_paidBills\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/edProfile\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"60dp\"\r\n            android:layout_gravity=\"center\"\r\n            android:background=\"#0E8EE3\"\r\n            android:text=\"@string/editProfile\" />\r\n\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/title_unit_info\"\r\n            android:textColor=\"#070404\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/unit_no\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/unit_no\"\r\n            android:textColor=\"#050505\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/unit_bedrooms\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/unit_bedrooms\"\r\n            android:textColor=\"#070606\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/unit_bathrooms\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/unit_bathrooms\"\r\n            android:textColor=\"#000000\" />\r\n\r\n        <TextView\r\n            android:id=\"@+id/unit_parking\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/unit_parking\"\r\n            android:textColor=\"#050505\" />\r\n\r\n\r\n    </LinearLayout>\r\n\r\n    <!-- TODO: Update blank fragment layout -->\r\n\r\n\r\n</ScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_profile.xml	(revision 5320c5647c1c58afbb8f53f94072d184302fcbbf)
++++ app/src/main/res/layout/fragment_profile.xml	(date 1604497111777)
+@@ -52,14 +52,6 @@
+                 android:text="@string/profile_family"
+                 android:textColor="#090808" />
+ 
+-            <Button
+-                android:id="@+id/vFamily"
+-                android:layout_width="wrap_content"
+-                android:layout_height="match_parent"
+-                android:layout_weight="0.3"
+-                android:background="#0E8EE3"
+-                android:text="@string/view_family" />
+-
+         </LinearLayout>
+ 
+         <LinearLayout
+@@ -68,23 +60,15 @@
+             android:orientation="horizontal">
+ 
+             <TextView
+-                android:id="@+id/profile_paidBills"
++                android:id="@+id/profile_Bills"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_weight="0.7"
+                 android:background="#FFFFFF"
+                 android:paddingLeft="15dp"
+-                android:text="@string/profile_paidBills"
++                android:text="Bills: "
+                 android:textColor="#090707" />
+ 
+-            <Button
+-                android:id="@+id/vBills"
+-                android:layout_width="wrap_content"
+-                android:layout_height="match_parent"
+-                android:layout_weight="0.3"
+-                android:background="#0E8EE3"
+-                android:text="@string/view_paidBills" />
+-
+         </LinearLayout>
+ 
+         <Button

@@ -1,0 +1,61 @@
+Index: app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.ui.profile;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.provider.LiveFolders;\r\nimport android.util.Log;\r\nimport android.view.Display;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.TextView;\r\n\r\nimport com.example.westwoodhomes.EditProfileActivity;\r\nimport com.example.westwoodhomes.MainActivity;\r\nimport com.example.westwoodhomes.R;\r\nimport com.example.westwoodhomes.Resident;\r\nimport com.example.westwoodhomes.fCon;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.net.HttpCookie;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport static android.content.ContentValues.TAG;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ProfileFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ProfileFragment extends Fragment\r\n{\r\n    Button profile;\r\n    DatabaseReference mDatabase;\r\n    TextView profile_name, profile_unit, profile_Bills;\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public ProfileFragment()\r\n    {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ProfileFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static ProfileFragment newInstance(String param1, String param2)\r\n    {\r\n        ProfileFragment fragment = new ProfileFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState)\r\n    {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null)\r\n        {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState)\r\n    {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_profile, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)\r\n    {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        profile = getView().findViewById(R.id.edProfile);\r\n        profile_name = getView().findViewById(R.id.profile_name);\r\n        profile_unit = getView().findViewById(R.id.profile_unit);\r\n        profile_Bills = getView().findViewById(R.id.profile_Bills);\r\n\r\n        mDatabase = fCon.fDatabase.getReference();\r\n        Query profileQuery = mDatabase.child(\"user\").child(MainActivity.userID);\r\n        profileQuery.addValueEventListener(new ValueEventListener()\r\n        {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot)\r\n            {\r\n                List <String> list = new ArrayList<>();\r\n                for (DataSnapshot sn : snapshot.getChildren())\r\n                {\r\n                   String name = sn.child(\"name\").getValue(String.class);\r\n                   String surname = sn.child(\"surname\").getValue(String.class);\r\n                   String unitNo = Integer.toString(sn.child(\"unitNo\").getValue(int.class));\r\n\r\n\r\n                   String fullName = name + \" \" + surname;\r\n                   profile_name.setText(getResources().getString(R.string.profile_name) + \" \" + fullName);\r\n                   profile_unit.setText(getResources().getString(R.string.profile_unit) + \" \" + unitNo);\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error)\r\n            {\r\n\r\n            }\r\n        });\r\n\r\n        profile.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View view)\r\n            {\r\n                startActivity(new Intent(getActivity(), EditProfileActivity.class));\r\n\r\n            }\r\n        });\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java	(revision 8e257280d51e2b5725cbfe75d5924d64d1630687)
++++ app/src/main/java/com/example/westwoodhomes/ui/profile/ProfileFragment.java	(date 1604505126740)
+@@ -17,7 +17,6 @@
+ import android.widget.TextView;
+ 
+ import com.example.westwoodhomes.EditProfileActivity;
+-import com.example.westwoodhomes.MainActivity;
+ import com.example.westwoodhomes.R;
+ import com.example.westwoodhomes.Resident;
+ import com.example.westwoodhomes.fCon;
+@@ -25,7 +24,6 @@
+ import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.DatabaseReference;
+ import com.google.firebase.database.FirebaseDatabase;
+-import com.google.firebase.database.Query;
+ import com.google.firebase.database.ValueEventListener;
+ 
+ import java.net.HttpCookie;
+@@ -99,6 +97,7 @@
+     @Override
+     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+     {
++
+         super.onViewCreated(view, savedInstanceState);
+         profile = getView().findViewById(R.id.edProfile);
+         profile_name = getView().findViewById(R.id.profile_name);
+@@ -106,23 +105,17 @@
+         profile_Bills = getView().findViewById(R.id.profile_Bills);
+ 
+         mDatabase = fCon.fDatabase.getReference();
+-        Query profileQuery = mDatabase.child("user").child(MainActivity.userID);
+-        profileQuery.addValueEventListener(new ValueEventListener()
++        mDatabase = FirebaseDatabase.getInstance().getReference();
++        mDatabase
++        mDatabase.addValueEventListener(new ValueEventListener()
+         {
+             @Override
+             public void onDataChange(@NonNull DataSnapshot snapshot)
+             {
+                 List <String> list = new ArrayList<>();
+-                for (DataSnapshot sn : snapshot.getChildren())
++                for (snapshot sn : snapshot.getChildren())
+                 {
+                    String name = sn.child("name").getValue(String.class);
+-                   String surname = sn.child("surname").getValue(String.class);
+-                   String unitNo = Integer.toString(sn.child("unitNo").getValue(int.class));
+-
+-
+-                   String fullName = name + " " + surname;
+-                   profile_name.setText(getResources().getString(R.string.profile_name) + " " + fullName);
+-                   profile_unit.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
+                 }
+             }
+ 
