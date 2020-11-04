@@ -105,6 +105,7 @@ public class ProfileFragment extends Fragment
         profile_unit = getView().findViewById(R.id.profile_unit);
         profile_Bills = getView().findViewById(R.id.profile_Bills);
 
+
         mDatabase = fCon.fDatabase.getReference();
         Query profileQuery = mDatabase.child("user").child(MainActivity.userID);
         profileQuery.addValueEventListener(new ValueEventListener()
