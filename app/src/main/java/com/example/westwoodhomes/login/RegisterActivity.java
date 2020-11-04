@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,8 @@ public class RegisterActivity extends AppCompatActivity
 {
     final String TAG = "RegisterActivity";
     DatabaseReference mDatabase;
-    EditText username, name, surname, pass, confirmPass, unit;
+    EditText username, name, surname, pass, confirmPass;
+    Spinner unit;
     Button register;
     TextView Login;
     @Override
@@ -41,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity
         surname = findViewById(R.id.regSurname);
         pass = findViewById(R.id.regPassword);
         confirmPass = findViewById(R.id.regConfirmPass);
-        unit = findViewById(R.id.regUnit);
+        unit = findViewById(R.id.spUnit);
         register = findViewById(R.id.btnReg);
         Login = findViewById(R.id.tvLogin);
 
