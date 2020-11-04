@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                startActivity(new Intent());
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
             }
         });
         mDatabase = fCon.fDatabase.getReference();
@@ -54,10 +54,8 @@ public class LoginActivity extends AppCompatActivity
 
     private void Login()
     {
-
-        String username, password;
-        username = this.username.getText().toString();
-        password = this.password.getText().toString();
+        final String username = this.username.getText().toString();
+        final String password = this.password.getText().toString();
 
     }
 }
