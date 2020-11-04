@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     android:orientation="vertical"
     tools:context=".EditProfileActivity">
 
@@ -16,20 +17,22 @@
             android:id="@+id/regName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/name"
             android:layout_weight="0.3"
             android:paddingLeft="15dp"
-            />
+            android:text="@string/name"
+            android:textColor="#0B0707" />
 
         <EditText
             android:id="@+id/edtName"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="#FFFFFF"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_weight="0.7"/>
+            android:inputType="textPersonName" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -39,20 +42,22 @@
             android:id="@+id/txtRegSurname"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/surname"
             android:layout_weight="0.3"
             android:paddingLeft="15dp"
-            />
+            android:text="@string/surname"
+            android:textColor="#090606" />
 
         <EditText
             android:id="@+id/edtSurname"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="0.7"
+            android:background="#FFFFFF"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_weight="0.7"/>
+            android:inputType="textPersonName" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -62,35 +67,40 @@
             android:id="@+id/txtFamily"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="@string/profile_family"
             android:layout_weight="0.3"
+            android:background="#FFFFFF"
             android:paddingLeft="15dp"
-            />
+            android:text="@string/profile_family"
+            android:textColor="#090606" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="Family member 1"
+                android:background="#BFB8B8"
                 android:paddingLeft="15dp"
-                />
+                android:text="Family member 1"
+                android:textColor="#090606" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:text="Family member 1"
+                android:background="#BFB8B8"
                 android:paddingLeft="15dp"
-                />
+                android:text="Family member 1"
+                android:textColor="#090606" />
 
             <Button
                 android:id="@+id/btnAddFam"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
+                android:background="#4C8EDF"
                 android:text="@string/addFamily" />
 
         </LinearLayout>
@@ -100,8 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
+            android:background="#4C8EDF"
             android:text="@string/finalize" />
-
 
 
     </LinearLayout>

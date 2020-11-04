@@ -1,0 +1,29 @@
+Index: app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.login;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.view.WindowManager;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.TextView;\r\nimport android.widget.Toast;\r\n\r\n\r\nimport com.example.westwoodhomes.MainActivity;\r\nimport com.example.westwoodhomes.R;\r\nimport com.example.westwoodhomes.Resident;\r\nimport com.example.westwoodhomes.User;\r\nimport com.example.westwoodhomes.fCon;\r\nimport com.example.westwoodhomes.md5;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\npublic class RegisterActivity extends AppCompatActivity\r\n{\r\n    final String TAG = \"RegisterActivity\";\r\n    DatabaseReference mDatabase;\r\n    EditText username, name, surname, pass, confirmPass, unit;\r\n    Button register;\r\n    TextView Login;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState)\r\n    {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_register);\r\n        mDatabase = fCon.fDatabase.getReference();\r\n        username = (EditText) findViewById(R.id.regUser);\r\n        name = findViewById(R.id.regName);\r\n        surname = findViewById(R.id.regSurname);\r\n        pass = findViewById(R.id.regPassword);\r\n        confirmPass = findViewById(R.id.regConfirmPass);\r\n        unit = findViewById(R.id.regUnit);\r\n        register = findViewById(R.id.btnReg);\r\n        Login = findViewById(R.id.tvLogin);\r\n\r\n        register.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View v)\r\n            {\r\n                Register();\r\n            }\r\n        });\r\n\r\n        Login.setOnClickListener(new View.OnClickListener()\r\n        {\r\n            @Override\r\n            public void onClick(View v)\r\n            {\r\n                startActivity(new Intent(getApplicationContext(), LoginActivity.class));\r\n                finish();\r\n            }\r\n\r\n        });\r\n\r\n\r\n\r\n    }\r\n\r\n    public void Register()\r\n    {\r\n        final String user = username.getText().toString();\r\n        final String pass = this.pass.getText().toString();\r\n        final String confirm = confirmPass.getText().toString();\r\n        final String name = this.name.getText().toString();\r\n        final String surname = this.surname.getText().toString();\r\n        final int unit = Integer.parseInt(this.unit.getText().toString());\r\n        Query query = mDatabase.child(\"user\").orderByChild(\"username\").equalTo(user);\r\n        query.addValueEventListener(new ValueEventListener()\r\n        {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot)\r\n            {\r\n                if (snapshot.exists())\r\n                {\r\n                    Log.d(TAG, \"Username taken.\");\r\n                    Toast.makeText(RegisterActivity.this, \"Username Taken\", Toast.LENGTH_SHORT).show();\r\n                }\r\n                else {\r\n                    Log.d(TAG, \"Username is free.\");\r\n                    if (pass.equals(confirm))\r\n                    {\r\n                        Resident res = new Resident(name, surname,user, md5.encryptPass(pass),unit);\r\n                        mDatabase.child(\"user\").push().setValue(res);\r\n\r\n                        Toast.makeText(RegisterActivity.this, \"User Created.\",Toast.LENGTH_SHORT).show();\r\n                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));\r\n                    }\r\n\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error)\r\n            {\r\n                Log.d(TAG, error.getMessage());\r\n            }\r\n        });\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java	(revision f0854f171e46761a495b1c5cf8023e85d67b9dff)
++++ app/src/main/java/com/example/westwoodhomes/login/RegisterActivity.java	(date 1604486667564)
+@@ -7,19 +7,15 @@
+ import android.os.Bundle;
+ import android.util.Log;
+ import android.view.View;
+-import android.view.WindowManager;
+ import android.widget.Button;
+ import android.widget.EditText;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+ 
+-import com.example.westwoodhomes.MainActivity;
+ import com.example.westwoodhomes.R;
+ import com.example.westwoodhomes.Resident;
+-import com.example.westwoodhomes.User;
+ import com.example.westwoodhomes.fCon;
+-import com.example.westwoodhomes.md5;
+ import com.google.firebase.database.DataSnapshot;
+ import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.DatabaseReference;
