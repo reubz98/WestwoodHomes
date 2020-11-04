@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".admin.ui.news.NewsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="@string/title_admin_news"
+            android:textColor="#090606"
+            android:textSize="24dp"/>
+        
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+        </ListView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="@string/admin_add_news"
+            android:textColor="#090606"
+            android:textSize="24dp"/>
+
+        <EditText
+            android:id="@+id/news_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:hint="Title"/>
+
+        <EditText
+            android:id="@+id/news_content"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:hint="Content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/news_add"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="@string/admin_add_news"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_gravity="center_horizontal"/>
+
+
+    </LinearLayout>
+</ScrollView>

@@ -70,4 +70,5 @@
     <string name="title_admin_residents">Residents</string>
     <string name="title_admin_review">Reviews</string>
     <string name="title_admin_unit">Units</string>
+    <string name="admin_add_news">Add News</string>
 </resources>
