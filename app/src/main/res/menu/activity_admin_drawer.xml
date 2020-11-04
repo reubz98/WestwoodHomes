@@ -26,7 +26,8 @@
 
         <item
             android:id="@+id/admin_nav_units"
-            android:title="@string/title_admin_units"/>
+            android:title="@string/title_admin_unit"/>
+
 
     </group>
 </menu>

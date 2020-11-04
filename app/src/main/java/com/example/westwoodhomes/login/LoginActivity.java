@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.westwoodhomes.MainActivity;
+import com.example.westwoodhomes.admin.AdminActivity;
 import com.example.westwoodhomes.fCon;
 import com.example.westwoodhomes.md5;
 import com.google.firebase.database.DataSnapshot;
@@ -83,8 +84,12 @@ public class LoginActivity extends AppCompatActivity
                         {
                             Log.d(TAG, "Password Correct");
                             Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT);
-                            MainActivity.userID = snapshot.getKey();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            if (item.child("isAdmin").getValue(boolean.class) == true){
+                                startActivity(new Intent(LoginActivity.this, AdminActivity.class));
+                            } else {
+                                MainActivity.userID = snapshot.getKey();
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            }
                         } else {
                             Log.d(TAG, "Password incorrect");
                             Toast.makeText(LoginActivity.this,"Password incorrect", Toast.LENGTH_SHORT);

@@ -64,6 +64,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="Loginbutt"><u>Login</u></string>
     <string name="title_admin_add_bill">Add Bill</string>
+    <string name="title_admin_add_unit">Add Unit</string>
     <string name="title_admin_bill">Bills</string>
     <string name="title_admin_complaint">Complaints</string>
     <string name="title_admin_news">News</string>

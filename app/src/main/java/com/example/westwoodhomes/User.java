@@ -6,6 +6,7 @@ public class User
     protected String Password;
     protected String Name;
     protected String Surname;
+    protected boolean isAdmin;
 
     public String getUsername()
     {
@@ -53,6 +54,7 @@ public class User
         this.Surname = Surname;
         this.Username = Username;
         this.Password = Password;
+        isAdmin = false;
     }
 
     public User()
