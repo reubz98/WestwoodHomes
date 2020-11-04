@@ -2,13 +2,23 @@ package com.example.westwoodhomes.admin.ui.complaint;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.westwoodhomes.R;
+import com.example.westwoodhomes.fCon;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,6 +27,9 @@ import com.example.westwoodhomes.R;
  */
 public class ComplaintFragment extends Fragment
 {
+    Button comm;
+    TextView complaints;
+    DatabaseReference mDatabase;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -66,5 +79,52 @@ public class ComplaintFragment extends Fragment
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_complaint, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        complaints = getView().findViewById(R.id.tvComplaint);
+        comm = getView().findViewById(R.id.btnClear);
+
+        comm.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                commClear();
+            }
+        });
+
+        mDatabase = fCon.fDatabase.getReference();
+
+        Query complaint = mDatabase.child("complaint");
+        complaint.addValueEventListener(new ValueEventListener()
+        {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                String displays = "";
+                for (DataSnapshot snapp : snapshot.getChildren())
+                {
+                    String type = snapp.child("type").getValue(String.class);
+                    String description = snapp.child("description").getValue(String.class);
+                    displays += type +"\n"+ description +"\n\n";
+                }
+                complaints.setText(displays);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+    }
+    public void commClear()
+    {
+        complaints.setText("");
     }
 }

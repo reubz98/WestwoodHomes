@@ -61,6 +61,7 @@
             android:textSize="24dp" />
 
         <TextView
+            android:id="@+id/tvRent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFFFFF"
@@ -69,6 +70,7 @@
             android:textColor="#0B0606" />
 
         <TextView
+            android:id="@+id/tvUtil"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFFFFF"
@@ -77,6 +79,7 @@
             android:textColor="#070505" />
 
         <TextView
+            android:id="@+id/tvNet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#FFFFFF"
