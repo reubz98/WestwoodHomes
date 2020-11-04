@@ -86,10 +86,13 @@ public class LoginActivity extends AppCompatActivity
                             Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT);
                             if (item.child("isAdmin").getValue(boolean.class) == true){
                                 startActivity(new Intent(LoginActivity.this, AdminActivity.class));
-                            } else {
-                                MainActivity.userID = snapshot.getKey();
-                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             }
+                            else
+                                {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                MainActivity.userID = item.getKey();
+
+                                }
                         } else {
                             Log.d(TAG, "Password incorrect");
                             Toast.makeText(LoginActivity.this,"Password incorrect", Toast.LENGTH_SHORT);

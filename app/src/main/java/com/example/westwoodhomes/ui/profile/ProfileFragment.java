@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.westwoodhomes.EditProfileActivity;
 import com.example.westwoodhomes.MainActivity;
@@ -43,7 +44,8 @@ public class ProfileFragment extends Fragment
 {
     Button profile;
     DatabaseReference mDatabase;
-    TextView profile_name, profile_unit, profile_Bills;
+    TextView profile_name, profile_unit, profile_Bills, unit_no, unit_bedrooms, unit_bathrooms, unit_parking;
+    private String unitNo;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -88,6 +90,8 @@ public class ProfileFragment extends Fragment
         }
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -95,7 +99,6 @@ public class ProfileFragment extends Fragment
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
@@ -104,35 +107,42 @@ public class ProfileFragment extends Fragment
         profile_name = getView().findViewById(R.id.profile_name);
         profile_unit = getView().findViewById(R.id.profile_unit);
         profile_Bills = getView().findViewById(R.id.profile_Bills);
+        unit_no = getView().findViewById(R.id.unit_no);
+        unit_bedrooms = getView().findViewById(R.id.unit_bedrooms);
+        unit_bathrooms = getView().findViewById(R.id.unit_bathrooms);
+        unit_parking = getView().findViewById(R.id.unit_parking);
 
 
         mDatabase = fCon.fDatabase.getReference();
-        Query profileQuery = mDatabase.child("user").child(MainActivity.userID);
-        profileQuery.addValueEventListener(new ValueEventListener()
+
+        Query profileQuery = mDatabase;
+        mDatabase.addValueEventListener(new ValueEventListener()
         {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot)
             {
-                List <String> list = new ArrayList<>();
-                for (DataSnapshot sn : snapshot.getChildren())
-                {
-                   String name = sn.child("name").getValue(String.class);
-                   String surname = sn.child("surname").getValue(String.class);
-                   String unitNo = Integer.toString(sn.child("unitNo").getValue(int.class));
+                String name = snapshot.child("user").child(MainActivity.userID).child("name").getValue(String.class);
+                String surname = snapshot.child("user").child(MainActivity.userID).child("surname").getValue(String.class);
+                unitNo = Integer.toString(snapshot.child("user").child(MainActivity.userID).child("unitNo").getValue(int.class));
+                String fullName = name + " " + surname;
+                profile_name.setText(getResources().getString(R.string.profile_name) + " " + fullName);
+                profile_unit.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
 
 
-                   String fullName = name + " " + surname;
-                   profile_name.setText(getResources().getString(R.string.profile_name) + " " + fullName);
-                   profile_unit.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
-                }
+                String bedrooms = Integer.toString(snapshot.child("unit").child(unitNo).child("bedrooms").getValue(int.class));
+                String bathrooms = Integer.toString(snapshot.child("unit").child(unitNo).child("bathrooms").getValue(int.class));
+                String parkingSpots = Integer.toString(snapshot.child("unit").child(unitNo).child("parkingSpots").getValue(int.class));
+                unit_no.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
+                unit_bedrooms.setText(getResources().getString(R.string.unit_bedrooms)+ " " + bedrooms);
+                unit_bathrooms.setText(getResources().getString(R.string.unit_bathrooms)+ " " + bathrooms);
+                unit_parking.setText(getResources().getString(R.string.unit_parking)+ " " + parkingSpots);
+
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error)
-            {
-
-            }
+            { }
         });
+
 
         profile.setOnClickListener(new View.OnClickListener()
         {
@@ -144,9 +154,6 @@ public class ProfileFragment extends Fragment
             }
         });
 
-
-
-
-
     }
+
 }
