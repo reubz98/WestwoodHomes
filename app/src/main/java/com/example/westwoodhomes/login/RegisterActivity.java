@@ -93,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_dropdown_item, units);
         unit.setAdapter(adapter);
-
-
     }
 
     public void Register()
