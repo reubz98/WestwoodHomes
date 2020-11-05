@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     tools:context=".admin.ui.review.ReviewFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -14,9 +15,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Reviews:"
-            android:paddingRight="15dp"
             android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="Reviews:"
             android:textColor="#090707"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -26,15 +27,17 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/tvRev"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:background="#FFFFFF"
-                android:paddingRight="15dp"
-                android:paddingLeft="15dp"/>
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
         </LinearLayout>
 
 
         <Button
+            android:id="@+id/btnRevc"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginLeft="100dp"

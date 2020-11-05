@@ -2,20 +2,36 @@ package com.example.westwoodhomes.admin.ui.review;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.westwoodhomes.R;
+import com.example.westwoodhomes.fCon;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ReviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReviewFragment extends Fragment {
+public class ReviewFragment extends Fragment
+{
+    Button clear;
+    TextView tvRev;
+    DatabaseReference mDatabase;
+    private String rating;
+    private String unitNo;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,8 +74,59 @@ public class ReviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_review2, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        tvRev = getView().findViewById(R.id.tvRev);
+        clear = getView().findViewById(R.id.btnRevc);
+
+        mDatabase = fCon.fDatabase.getReference();
+
+        clear.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                clearReview();
+            }
+        });
+
+        Query rev = mDatabase.child("review");
+        rev.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                String disp = "";
+                for (DataSnapshot snaps : snapshot.getChildren())
+                {
+                    String name = snaps.child("name").getValue(String.class);
+                    rating = Integer.toString(snaps.child("rating").getValue(int.class));
+                    String review = snaps.child("reviewBody").getValue(String.class);
+                    unitNo = Integer.toString(snaps.child("unitNo").getValue(int.class));
+
+                    disp += name+"\n"+ rating +"\n"+review+"\n"+ unitNo +"\n\n";
+                }
+                tvRev.setText(disp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error)
+            {
+
+            }
+        });
+
+    }
+    public void clearReview()
+    {
+        tvRev.setText("");
     }
 }

@@ -73,6 +73,7 @@
                 android:background="#0E8EE3"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                android:textSize="18sp"
                 tools:text="Add Bill" />
 
 
