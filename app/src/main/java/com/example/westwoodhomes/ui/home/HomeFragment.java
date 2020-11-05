@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class HomeFragment extends Fragment
 {
-    TextView tvNews;
+    TextView tvNews, tvRent, tvUtil, tvNet;
     DatabaseReference mDatabase;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -88,6 +88,9 @@ public class HomeFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
         tvNews = getView().findViewById(R.id.tvNews);
+        tvRent = getView().findViewById(R.id.tvRent);
+        tvUtil = getView().findViewById(R.id.tvUtil);
+        tvNet = getView().findViewById(R.id.tvNet);
 
         tvNews.setMovementMethod(new ScrollingMovementMethod());
 
@@ -106,7 +109,6 @@ public class HomeFragment extends Fragment
                     String title = snap.child("title").getValue(String.class);
                     String content = snap.child("content").getValue(String.class);
                     display += title + "\n"+content+ "\n\n";
-
                 }
                 tvNews.setText(display);
             }
@@ -114,6 +116,25 @@ public class HomeFragment extends Fragment
             @Override
             public void onCancelled(@NonNull DatabaseError error)
             {
+
+            }
+        });
+        Query billQ = mDatabase.child("user").child(MainActivity.userID).child("bills");
+
+        billQ.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
+                String dis ="";
+                for (DataSnapshot sn : snapshot.getChildren())
+                {
+
+                }
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
