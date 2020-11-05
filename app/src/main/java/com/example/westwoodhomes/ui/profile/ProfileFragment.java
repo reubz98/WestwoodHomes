@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment
 {
     Button profile;
     DatabaseReference mDatabase;
-    TextView profile_name, profile_unit, profile_Bills, unit_no, unit_bedrooms, unit_bathrooms, unit_parking;
+    TextView profile_name, profile_unit, profile_Bills, profile_family, unit_no, unit_bedrooms, unit_bathrooms, unit_parking;
     private String unitNo;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -106,7 +106,8 @@ public class ProfileFragment extends Fragment
         profile = getView().findViewById(R.id.edProfile);
         profile_name = getView().findViewById(R.id.profile_name);
         profile_unit = getView().findViewById(R.id.profile_unit);
-        profile_Bills = getView().findViewById(R.id.profile_Bills);
+        profile_Bills = getView().findViewById(R.id.profile_txtBills);
+        profile_family = getView().findViewById(R.id.profile_txtFamily);
         unit_no = getView().findViewById(R.id.unit_no);
         unit_bedrooms = getView().findViewById(R.id.unit_bedrooms);
         unit_bathrooms = getView().findViewById(R.id.unit_bathrooms);
@@ -127,7 +128,23 @@ public class ProfileFragment extends Fragment
                 String fullName = name + " " + surname;
                 profile_name.setText(getResources().getString(R.string.profile_name) + " " + fullName);
                 profile_unit.setText(getResources().getString(R.string.profile_unit) + " " + unitNo);
-
+                String family = "";
+                if (snapshot.child("user").child(MainActivity.userID).child("family").exists()){
+                    for (DataSnapshot snap : snapshot.child("user").child(MainActivity.userID).child("family").getChildren()){
+                        family += snap.getValue(String.class) + "\n";
+                    }
+                }
+                String bills = "";
+                if (snapshot.child("user").child(MainActivity.userID).child("bills").exists()){
+                    for (DataSnapshot snap : snapshot.child("user").child(MainActivity.userID).child("bills").getChildren()){
+                        bills += "Type : " + snap.child("type").getValue(String.class) +
+                                "\nAmount : " + snap.child("amount").getValue(double.class) +
+                                "\nDate : " + snap.child("dateIssued").getValue(String.class) +
+                                "\nPaid : " + snap.child("paid").getValue(boolean.class) + "\n\n";
+                    }
+                }
+                profile_family.setText(family);
+                profile_Bills.setText(bills);
 
                 String bedrooms = Integer.toString(snapshot.child("unit").child(unitNo).child("bedrooms").getValue(int.class));
                 String bathrooms = Integer.toString(snapshot.child("unit").child(unitNo).child("bathrooms").getValue(int.class));

@@ -60,32 +60,13 @@
             android:textColor="#0C0808"
             android:textSize="24dp" />
 
-        <TextView
-            android:id="@+id/tvRent"
+        <ListView
+            android:id="@+id/lsvBills"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:paddingLeft="15dp"
-            android:text="@string/bills_rent"
-            android:textColor="#0B0606" />
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
 
-        <TextView
-            android:id="@+id/tvUtil"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:paddingLeft="15dp"
-            android:text="@string/bills_utility"
-            android:textColor="#070505" />
-
-        <TextView
-            android:id="@+id/tvNet"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="#FFFFFF"
-            android:paddingLeft="15dp"
-            android:text="@string/bills_internet"
-            android:textColor="#070505" />
+        </ListView>
 
 
     </LinearLayout>

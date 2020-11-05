@@ -7,9 +7,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.westwoodhomes.MainActivity;
@@ -21,6 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
@@ -28,8 +36,10 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class HomeFragment extends Fragment
 {
-    TextView tvNews, tvRent, tvUtil, tvNet;
+    TextView tvNews;
     DatabaseReference mDatabase;
+    ListView bills;
+    SimpleAdapter sa;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -88,9 +98,7 @@ public class HomeFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
         tvNews = getView().findViewById(R.id.tvNews);
-        tvRent = getView().findViewById(R.id.tvRent);
-        tvUtil = getView().findViewById(R.id.tvUtil);
-        tvNet = getView().findViewById(R.id.tvNet);
+        bills = getView().findViewById(R.id.lsvBills);
 
         tvNews.setMovementMethod(new ScrollingMovementMethod());
 
@@ -119,24 +127,59 @@ public class HomeFragment extends Fragment
 
             }
         });
-        Query billQ = mDatabase.child("user").child(MainActivity.userID).child("bills");
+        displayBill();
+    }
 
-        billQ.addValueEventListener(new ValueEventListener()
-        {
+    public void displayBill(){
+        Query billQuery = mDatabase.child("user").child(MainActivity.userID).child("bills");
+        billQuery.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot)
-            {
-                String dis ="";
-                for (DataSnapshot sn : snapshot.getChildren())
-                {
-
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<HashMap<String,String>> bill = new ArrayList<>();
+                if (snapshot.exists()){
+                    for (DataSnapshot item : snapshot.getChildren()){
+                        HashMap<String,String> hash = new HashMap<>();
+                        hash.put("amount","Amount : " + item.child("amount").getValue(double.class).toString());
+                        hash.put("date","Date : " + item.child("dateIssued").getValue(String.class));
+                        hash.put("paid","Paid : " + item.child("paid").getValue(boolean.class).toString());
+                        hash.put("type","Type : " + item.child("type").getValue(String.class));
+                        bill.add(hash);
+                    }
+                    sa = new SimpleAdapter(getContext(), bill, R.layout.bill_display,
+                            new String[]{"amount","date","paid","type"},
+                            new int[]{R.id.dis_bill_amount,R.id.dis_bill_date, R.id.dis_bill_paid,
+                            R.id.dis_bill_type});
+                    bills.setAdapter(sa);
+                    setListViewHeightBasedOnChildren(bills);
                 }
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
+    }
+
+    private void setListViewHeightBasedOnChildren(ListView listView) {
+        Log.e("Listview Size ", "" + listView.getCount());
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight
+                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

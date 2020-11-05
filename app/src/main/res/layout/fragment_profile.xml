@@ -37,39 +37,41 @@
             android:text="@string/unit_no"
             android:textColor="#040303" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/profile_family"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
+            android:layout_height="20dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="@string/profile_family"
+            android:textColor="#090808" />
 
-            <TextView
-                android:id="@+id/profile_family"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:background="#FFFFFF"
-                android:paddingLeft="15dp"
-                android:text="@string/profile_family"
-                android:textColor="#090808" />
-
-        </LinearLayout>
-
-        <LinearLayout
+        <TextView
+            android:id="@+id/profile_txtFamily"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:textColor="#090707"
+            />
 
-            <TextView
-                android:id="@+id/profile_Bills"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="0.7"
-                android:background="#FFFFFF"
-                android:paddingLeft="15dp"
-                android:text="Bills: "
-                android:textColor="#090707" />
+        <TextView
+            android:id="@+id/profile_Bills"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:text="Bills: "
+            android:textColor="#090707" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/profile_txtBills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:paddingLeft="15dp"
+            android:textColor="#090707"
+            />
 
         <Button
             android:id="@+id/edProfile"
