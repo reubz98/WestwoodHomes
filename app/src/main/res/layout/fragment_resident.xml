@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BFB8B8"
     tools:context=".admin.ui.residents.ResidentFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,12 +19,13 @@
             android:paddingRight="15dp"
             android:text="@string/title_admin_residents"
             android:textColor="#090606"
-            android:textSize="24dp"/>
+            android:textSize="24dp" />
 
         <ListView
             android:id="@+id/lsvResidents"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
         </ListView>
 

@@ -34,7 +34,8 @@ import java.util.List;
  * Use the {@link NewsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsFragment extends Fragment {
+public class NewsFragment extends Fragment
+{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,7 +50,8 @@ public class NewsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public NewsFragment() {
+    public NewsFragment()
+    {
         // Required empty public constructor
     }
 
@@ -62,7 +64,8 @@ public class NewsFragment extends Fragment {
      * @return A new instance of fragment NewsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NewsFragment newInstance(String param1, String param2) {
+    public static NewsFragment newInstance(String param1, String param2)
+    {
         NewsFragment fragment = new NewsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
@@ -72,9 +75,12 @@ public class NewsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        if (getArguments() != null)
+
+        {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -82,13 +88,15 @@ public class NewsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_news, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         mDatabase = fCon.fDatabase.getReference();
         title = getView().findViewById(R.id.news_title);
@@ -104,20 +112,25 @@ public class NewsFragment extends Fragment {
         displayNews();
     }
 
-    public void addNews(){
+    public void addNews()
+    {
         String title = this.title.getText().toString();
         String content = this.content.getText().toString();
         News news = new News(title, content);
         mDatabase.child("news").push().setValue(news);
     }
 
-    public void displayNews(){
+    public void displayNews()
+    {
         Query newsQuery = mDatabase.child("news");
-        newsQuery.addValueEventListener(new ValueEventListener() {
+        newsQuery.addValueEventListener(new ValueEventListener()
+        {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot)
+            {
                 List<HashMap<String,String>> news = new ArrayList<>();
-                if (snapshot.exists()){
+                if (snapshot.exists())
+                {
                     for (DataSnapshot item : snapshot.getChildren()){
                         HashMap<String,String> hash = new HashMap<>();
                         hash.put("title", item.child("title").getValue(String.class));
@@ -133,22 +146,26 @@ public class NewsFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error)
+            {
 
             }
         });
     }
 
-    private void setListViewHeightBasedOnChildren(ListView listView) {
+    private void setListViewHeightBasedOnChildren(ListView listView)
+    {
         Log.e("Listview Size ", "" + listView.getCount());
         ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
+        if (listAdapter == null)
+        {
 
             return;
         }
 
         int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
+        for (int i = 0; i < listAdapter.getCount(); i++)
+        {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
