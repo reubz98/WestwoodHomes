@@ -1,0 +1,405 @@
+Index: app/src/main/java/com/example/westwoodhomes/ui/home/HomeFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.ui.home;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport com.example.westwoodhomes.R;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link HomeFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class HomeFragment extends Fragment\r\n{\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public HomeFragment()\r\n    {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment HomeFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static HomeFragment newInstance(String param1, String param2)\r\n    {\r\n        HomeFragment fragment = new HomeFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState)\r\n    {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null)\r\n        {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState)\r\n    {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_home, container, false);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/ui/home/HomeFragment.java	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/java/com/example/westwoodhomes/ui/home/HomeFragment.java	(date 1604522855173)
+@@ -2,13 +2,24 @@
+ 
+ import android.os.Bundle;
+ 
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
++import android.text.method.ScrollingMovementMethod;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.TextView;
+ 
++import com.example.westwoodhomes.MainActivity;
+ import com.example.westwoodhomes.R;
++import com.example.westwoodhomes.fCon;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.Query;
++import com.google.firebase.database.ValueEventListener;
+ 
+ /**
+  * A simple {@link Fragment} subclass.
+@@ -17,6 +28,9 @@
+  */
+ public class HomeFragment extends Fragment
+ {
++    TextView tvNews;
++    DatabaseReference mDatabase;
++
+     // TODO: Rename parameter arguments, choose names that match
+     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+     private static final String ARG_PARAM1 = "param1";
+@@ -68,4 +82,40 @@
+         // Inflate the layout for this fragment
+         return inflater.inflate(R.layout.fragment_home, container, false);
+     }
++
++    @Override
++    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
++    {
++        super.onViewCreated(view, savedInstanceState);
++        tvNews = getView().findViewById(R.id.tvNews);
++
++        tvNews.setMovementMethod(new ScrollingMovementMethod());
++
++        mDatabase = fCon.fDatabase.getReference();
++
++        Query newsQuery = mDatabase.child("news");
++
++        newsQuery.addValueEventListener(new ValueEventListener()
++        {
++            @Override
++            public void onDataChange(@NonNull DataSnapshot snapshot)
++            {
++                String display = "";
++                for (DataSnapshot snap : snapshot.getChildren())
++                {
++                    String title = snap.child("title").getValue(String.class);
++                    String content = snap.child("content").getValue(String.class);
++                    display += title + "\n"+content+ "\n\n";
++
++                }
++                tvNews.setText(display);
++            }
++
++            @Override
++            public void onCancelled(@NonNull DatabaseError error)
++            {
++
++            }
++        });
++    }
+ }
+Index: app/src/main/java/com/example/westwoodhomes/ui/review/ReviewFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.ui.review;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\n\r\nimport com.example.westwoodhomes.R;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ReviewFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ReviewFragment extends Fragment {\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public ReviewFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ReviewFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static ReviewFragment newInstance(String param1, String param2)\r\n    {\r\n        ReviewFragment fragment = new ReviewFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_review, container, false);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/ui/review/ReviewFragment.java	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/java/com/example/westwoodhomes/ui/review/ReviewFragment.java	(date 1604526219763)
+@@ -2,20 +2,31 @@
+ 
+ import android.os.Bundle;
+ 
++import androidx.annotation.NonNull;
++import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
+ 
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.TextView;
+ 
+ import com.example.westwoodhomes.R;
++import com.example.westwoodhomes.fCon;
++import com.google.firebase.database.DatabaseReference;
+ 
+ /**
+  * A simple {@link Fragment} subclass.
+  * Use the {@link ReviewFragment#newInstance} factory method to
+  * create an instance of this fragment.
+  */
+-public class ReviewFragment extends Fragment {
++public class ReviewFragment extends Fragment
++{
++    Button SubmitRev, SubmitCom;
++    EditText edtName, edtUnitNo, edtRating, edtReview;
++    DatabaseReference mDatabase;
+     // TODO: Rename parameter arguments, choose names that match
+     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+     private static final String ARG_PARAM1 = "param1";
+@@ -25,7 +36,8 @@
+     private String mParam1;
+     private String mParam2;
+ 
+-    public ReviewFragment() {
++    public ReviewFragment()
++    {
+         // Required empty public constructor
+     }
+ 
+@@ -49,9 +61,11 @@
+     }
+ 
+     @Override
+-    public void onCreate(Bundle savedInstanceState) {
++    public void onCreate(Bundle savedInstanceState)
++    {
+         super.onCreate(savedInstanceState);
+-        if (getArguments() != null) {
++        if (getArguments() != null)
++        {
+             mParam1 = getArguments().getString(ARG_PARAM1);
+             mParam2 = getArguments().getString(ARG_PARAM2);
+         }
+@@ -59,8 +73,50 @@
+ 
+     @Override
+     public View onCreateView(LayoutInflater inflater, ViewGroup container,
+-                             Bundle savedInstanceState) {
++                             Bundle savedInstanceState)
++    {
+         // Inflate the layout for this fragment
+         return inflater.inflate(R.layout.fragment_review, container, false);
+     }
++
++    @Override
++    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
++    {
++        super.onViewCreated(view, savedInstanceState);
++        SubmitRev = getView().findViewById(R.id.btnSubmitRev);
++        SubmitCom = getView().findViewById(R.id.btnSubmitCom);
++        edtName = getView().findViewById(R.id.edtName);
++        edtUnitNo = getView().findViewById(R.id.edtUnitNo);
++        edtRating = getView().findViewById(R.id.edtRating);
++        edtReview = getView().findViewById(R.id.edtReview);
++        mDatabase = fCon.fDatabase.getReference();
++        SubmitRev.setOnClickListener(new View.OnClickListener()
++        {
++            @Override
++            public void onClick(View view)
++            {
++                submitReview();
++            }
++
++        });
++
++        SubmitCom.setOnClickListener(new View.OnClickListener()
++        {
++            @Override
++            public void onClick(View view)
++            {
++                submitComplaint();
++            }
++        });
++
++    }
++    public void submitReview()
++    {
++
++    }
++
++    public void submitComplaint()
++    {
++
++    }
+ }
+Index: app/src/main/java/com/example/westwoodhomes/Resident.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes;\r\n\r\nimport java.util.List;\r\n\r\npublic class Resident extends User\r\n{\r\n    private int UnitNo;\r\n    private String[] Family;\r\n    private List<Bill> Bills;\r\n\r\n    public Resident(){\r\n\r\n    }\r\n\r\n    public Resident(String name, String surname, String username, String password, int UnitNo){\r\n        super(username, password, name, surname);\r\n        this.UnitNo = UnitNo;\r\n    }\r\n\r\n    public int getUnitNo() {\r\n        return UnitNo;\r\n    }\r\n\r\n    public void setUnitNo(int unitNo) {\r\n        UnitNo = unitNo;\r\n    }\r\n\r\n    public String[] getFamily() {\r\n        return Family;\r\n    }\r\n\r\n    public void setFamily(String[] family) {\r\n        Family = family;\r\n    }\r\n\r\n    public List<Bill> getBills() {\r\n        return Bills;\r\n    }\r\n\r\n    public void setBills(List<Bill> bills) {\r\n        Bills = bills;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/Resident.java	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/java/com/example/westwoodhomes/Resident.java	(date 1604518471172)
+@@ -8,7 +8,8 @@
+     private String[] Family;
+     private List<Bill> Bills;
+ 
+-    public Resident(){
++    public Resident()
++    {
+ 
+     }
+ 
+Index: app/src/main/java/com/example/westwoodhomes/admin/ui/units/UnitsFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.westwoodhomes.admin.ui.units;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.annotation.Nullable;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.EditText;\r\nimport android.widget.ListAdapter;\r\nimport android.widget.ListView;\r\nimport android.widget.SimpleAdapter;\r\n\r\nimport com.example.westwoodhomes.R;\r\nimport com.example.westwoodhomes.Unit;\r\nimport com.example.westwoodhomes.fCon;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.DatabaseReference;\r\nimport com.google.firebase.database.Query;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link UnitsFragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class UnitsFragment extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n    DatabaseReference mDatabase;\r\n    ListView units;\r\n    EditText unitNo, bedrooms, bathrooms, parking;\r\n    Button add;\r\n    SimpleAdapter sa;\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    public UnitsFragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment UnitsFragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static UnitsFragment newInstance(String param1, String param2) {\r\n        UnitsFragment fragment = new UnitsFragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        return inflater.inflate(R.layout.fragment_units, container, false);\r\n    }\r\n\r\n    @Override\r\n    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {\r\n        super.onViewCreated(view, savedInstanceState);\r\n        units = getView().findViewById(R.id.lsvUnits);\r\n        unitNo = getView().findViewById(R.id.edit_unit_number);\r\n        bedrooms = getView().findViewById(R.id.edit_unit_bedrooms);\r\n        bathrooms = getView().findViewById(R.id.edit_unit_bathrooms);\r\n        parking = getView().findViewById(R.id.edit_unit_parking);\r\n        add = getView().findViewById(R.id.btnAddUnit);\r\n        mDatabase = fCon.fDatabase.getReference();\r\n        add.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                addUnit();\r\n            }\r\n        });\r\n        displayUnits();\r\n    }\r\n\r\n    public void addUnit(){\r\n        final int unitNo = Integer.parseInt(this.unitNo.getText().toString());\r\n        final int bedrooms = Integer.parseInt(this.bedrooms.getText().toString());\r\n        final int bathrooms = Integer.parseInt(this.bathrooms.getText().toString());\r\n        final int parking = Integer.parseInt(this.parking.getText().toString());\r\n        Unit unit = new Unit(unitNo, bedrooms, bathrooms, parking);\r\n        mDatabase.child(\"unit\").child(Integer.toString(unitNo)).setValue(unit);\r\n    }\r\n\r\n    public void displayUnits(){\r\n\r\n        Query unitsQuery = mDatabase.child(\"unit\").orderByChild(\"unitNo\");\r\n        unitsQuery.addValueEventListener(new ValueEventListener() {\r\n            @Override\r\n            public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                List<HashMap<String,String>> unit = new ArrayList<HashMap<String, String>>();\r\n                if (snapshot.exists()){\r\n                    for (DataSnapshot item : snapshot.getChildren()){\r\n                        HashMap<String, String> hash = new HashMap<String, String>();\r\n                        hash.put(\"unitNo\", getResources().getString(R.string.unit_no) + item.child(\"unitNo\").getValue(Integer.class));\r\n                        hash.put(\"bedrooms\", getResources().getString(R.string.unit_bedrooms) +  item.child(\"bedrooms\").getValue(Integer.class));\r\n                        hash.put(\"bathrooms\", getResources().getString(R.string.unit_bathrooms) +  item.child(\"bathrooms\").getValue(Integer.class));\r\n                        hash.put(\"parking\", getResources().getString(R.string.unit_parking) +  item.child(\"parkingSpots\").getValue(Integer.class));\r\n                        unit.add(hash);\r\n                    }\r\n                    sa = new SimpleAdapter(getContext(), unit, R.layout.unit_display,\r\n                            new String[]{\"unitNo\",\"bedrooms\",\"bathrooms\", \"parking\"},\r\n                            new int[]{R.id.dis_unit_no, R.id.dis_bedrooms, R.id.dis_bathrooms, R.id.dis_parking});\r\n                    units.setAdapter(sa);\r\n                    setListViewHeightBasedOnChildren(units);\r\n                }\r\n            }\r\n\r\n            @Override\r\n            public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    private void setListViewHeightBasedOnChildren(ListView listView) {\r\n        Log.e(\"Listview Size \", \"\" + listView.getCount());\r\n        ListAdapter listAdapter = listView.getAdapter();\r\n        if (listAdapter == null) {\r\n\r\n            return;\r\n        }\r\n\r\n        int totalHeight = 0;\r\n        for (int i = 0; i < listAdapter.getCount(); i++) {\r\n            View listItem = listAdapter.getView(i, null, listView);\r\n            listItem.measure(0, 0);\r\n            totalHeight += listItem.getMeasuredHeight();\r\n        }\r\n\r\n        ViewGroup.LayoutParams params = listView.getLayoutParams();\r\n        params.height = totalHeight\r\n                + (listView.getDividerHeight() * (listAdapter.getCount() - 1));\r\n        listView.setLayoutParams(params);\r\n        listView.requestLayout();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/westwoodhomes/admin/ui/units/UnitsFragment.java	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/java/com/example/westwoodhomes/admin/ui/units/UnitsFragment.java	(date 1604525880898)
+@@ -89,7 +89,8 @@
+     }
+ 
+     @Override
+-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
++    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
++    {
+         super.onViewCreated(view, savedInstanceState);
+         units = getView().findViewById(R.id.lsvUnits);
+         unitNo = getView().findViewById(R.id.edit_unit_number);
+@@ -98,16 +99,19 @@
+         parking = getView().findViewById(R.id.edit_unit_parking);
+         add = getView().findViewById(R.id.btnAddUnit);
+         mDatabase = fCon.fDatabase.getReference();
+-        add.setOnClickListener(new View.OnClickListener() {
++        add.setOnClickListener(new View.OnClickListener()
++        {
+             @Override
+-            public void onClick(View v) {
++            public void onClick(View v)
++            {
+                 addUnit();
+             }
+         });
+         displayUnits();
+     }
+ 
+-    public void addUnit(){
++    public void addUnit()
++    {
+         final int unitNo = Integer.parseInt(this.unitNo.getText().toString());
+         final int bedrooms = Integer.parseInt(this.bedrooms.getText().toString());
+         final int bathrooms = Integer.parseInt(this.bathrooms.getText().toString());
+@@ -116,12 +120,15 @@
+         mDatabase.child("unit").child(Integer.toString(unitNo)).setValue(unit);
+     }
+ 
+-    public void displayUnits(){
++    public void displayUnits()
++    {
+ 
+         Query unitsQuery = mDatabase.child("unit").orderByChild("unitNo");
+-        unitsQuery.addValueEventListener(new ValueEventListener() {
++        unitsQuery.addValueEventListener(new ValueEventListener()
++        {
+             @Override
+-            public void onDataChange(@NonNull DataSnapshot snapshot) {
++            public void onDataChange(@NonNull DataSnapshot snapshot)
++            {
+                 List<HashMap<String,String>> unit = new ArrayList<HashMap<String, String>>();
+                 if (snapshot.exists()){
+                     for (DataSnapshot item : snapshot.getChildren()){
+Index: app/src/main/res/layout/fragment_review.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#BFB8B8\"\r\n    tools:context=\".ui.review.ReviewFragment\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/title_writeReview\"\r\n            android:textColor=\"#040202\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/regName\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.3\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/name\"\r\n                android:textColor=\"#090505\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtName\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.7\"\r\n                android:background=\"#FFFFFF\"\r\n                android:ems=\"10\"\r\n                android:inputType=\"textPersonName\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/txtUnitNo\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.3\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/unit_no\"\r\n                android:textColor=\"#0B0707\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtUnitNo\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.7\"\r\n                android:background=\"#FFFFFF\"\r\n                android:ems=\"10\"\r\n                android:inputType=\"textPersonName\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:orientation=\"horizontal\">\r\n\r\n            <TextView\r\n                android:id=\"@+id/txtRating\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.3\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/rating\"\r\n                android:textColor=\"#070505\" />\r\n\r\n            <EditText\r\n                android:id=\"@+id/edtRating\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"match_parent\"\r\n                android:layout_weight=\"0.7\"\r\n                android:background=\"#FFFFFF\"\r\n                android:ems=\"10\"\r\n                android:inputType=\"textPersonName\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtReview\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"30dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/write_review\"\r\n            android:textColor=\"#090505\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtReview\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textMultiLine\" />\r\n\r\n        <Button\r\n            android:layout_width=\"120dp\"\r\n            android:layout_height=\"60dp\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            android:background=\"#0E8EE3\"\r\n            android:text=\"@string/submit_review\"></Button>\r\n\r\n        <View\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0.2dp\"\r\n            android:background=\"@color/colorText\" />\r\n\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/title_writeComplaint\"\r\n            android:textColor=\"#090606\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtComplaint\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textMultiLine\" />\r\n\r\n        <Button\r\n            android:layout_width=\"120dp\"\r\n            android:layout_height=\"60dp\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            android:background=\"#0E8EE3\"\r\n            android:text=\"@string/submit_complaint\"></Button>\r\n\r\n        <View\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0.2dp\"\r\n            android:background=\"@color/colorText\" />\r\n    </LinearLayout>\r\n\r\n\r\n</ScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_review.xml	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/res/layout/fragment_review.xml	(date 1604525122930)
+@@ -62,7 +62,7 @@
+                 android:id="@+id/edtUnitNo"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+-                android:layout_weight="0.7"
++                android:layout_weight="0.69"
+                 android:background="#FFFFFF"
+                 android:ems="10"
+                 android:inputType="textPersonName" />
+@@ -87,7 +87,7 @@
+                 android:id="@+id/edtRating"
+                 android:layout_width="wrap_content"
+                 android:layout_height="match_parent"
+-                android:layout_weight="0.7"
++                android:layout_weight="0.78"
+                 android:background="#FFFFFF"
+                 android:ems="10"
+                 android:inputType="textPersonName" />
+@@ -111,6 +111,7 @@
+             android:inputType="textMultiLine" />
+ 
+         <Button
++            android:id="@+id/btnSubmitRev"
+             android:layout_width="120dp"
+             android:layout_height="60dp"
+             android:layout_gravity="center_horizontal"
+@@ -140,6 +141,7 @@
+             android:inputType="textMultiLine" />
+ 
+         <Button
++            android:id="@+id/btnSubmitCom"
+             android:layout_width="120dp"
+             android:layout_height="60dp"
+             android:layout_gravity="center_horizontal"
+Index: app/src/main/res/layout/fragment_home.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<ScrollView xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#BFB8B8\"\r\n    tools:context=\".ui.home.HomeFragment\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/title_westwood\"\r\n            android:textColor=\"#100B0B\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"200dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <TextView\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"50dp\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"@string/news\"\r\n                android:textColor=\"#070505\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <View\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"0.2dp\"\r\n            android:background=\"@color/colorText\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/upcoming_bills\"\r\n            android:textColor=\"#0C0808\"\r\n            android:textSize=\"24dp\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/bills_rent\"\r\n            android:textColor=\"#0B0606\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/bills_utility\"\r\n            android:textColor=\"#070505\" />\r\n\r\n        <TextView\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/bills_internet\"\r\n            android:textColor=\"#070505\" />\r\n\r\n\r\n    </LinearLayout>\r\n\r\n    <!-- TODO: Update blank fragment layout -->\r\n\r\n</ScrollView>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_home.xml	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/res/layout/fragment_home.xml	(date 1604523308646)
+@@ -26,11 +26,24 @@
+             android:orientation="vertical">
+ 
+             <TextView
++                android:id="@+id/txtNews"
+                 android:layout_width="match_parent"
+-                android:layout_height="50dp"
++                android:layout_height="25dp"
+                 android:paddingLeft="15dp"
+                 android:text="@string/news"
+-                android:textColor="#070505" />
++                android:textColor="#070505"
++                android:textSize="18sp" />
++
++            <TextView
++                android:id="@+id/tvNews"
++                android:layout_width="match_parent"
++                android:layout_height="148dp"
++                android:paddingLeft="15dp"
++                android:paddingRight="15dp"
++                android:inputType="textMultiLine"
++                android:scrollbars="vertical"/>
++
++
+ 
+         </LinearLayout>
+ 
+Index: app/src/main/res/layout/activity_edit_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:background=\"#BFB8B8\"\r\n    android:orientation=\"vertical\"\r\n    tools:context=\".EditProfileActivity\">\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/regName\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_weight=\"0.3\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/name\"\r\n            android:textColor=\"#0B0707\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtName\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_weight=\"0.7\"\r\n            android:background=\"#FFFFFF\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"50dp\"\r\n        android:orientation=\"horizontal\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtRegSurname\"\r\n            android:layout_width=\"59dp\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_weight=\"0.3\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/surname\"\r\n            android:textColor=\"#090606\" />\r\n\r\n        <EditText\r\n            android:id=\"@+id/edtSurname\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_weight=\"0.7\"\r\n            android:background=\"#FFFFFF\"\r\n            android:ems=\"10\"\r\n            android:inputType=\"textPersonName\" />\r\n\r\n    </LinearLayout>\r\n\r\n    <LinearLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:orientation=\"vertical\">\r\n\r\n        <TextView\r\n            android:id=\"@+id/txtFamily\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50dp\"\r\n            android:layout_weight=\"0.3\"\r\n            android:background=\"#FFFFFF\"\r\n            android:paddingLeft=\"15dp\"\r\n            android:text=\"@string/profile_family\"\r\n            android:textColor=\"#090606\" />\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:background=\"#FFFFFF\"\r\n            android:orientation=\"vertical\">\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"30dp\"\r\n                android:background=\"#BFB8B8\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"Family member 1\"\r\n                android:textColor=\"#090606\" />\r\n\r\n            <TextView\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"30dp\"\r\n                android:background=\"#BFB8B8\"\r\n                android:paddingLeft=\"15dp\"\r\n                android:text=\"Family member 1\"\r\n                android:textColor=\"#090606\" />\r\n\r\n            <Button\r\n                android:id=\"@+id/btnAddFam\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"40dp\"\r\n                android:layout_gravity=\"center_horizontal\"\r\n                android:background=\"#4C8EDF\"\r\n                android:text=\"@string/addFamily\" />\r\n\r\n        </LinearLayout>\r\n\r\n        <Button\r\n            android:id=\"@+id/btnFinal\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"40dp\"\r\n            android:layout_marginBottom=\"5\"\r\n            android:layout_gravity=\"center_horizontal\"\r\n            android:background=\"#4C8EDF\"\r\n            android:text=\"@string/finalize\" />\r\n\r\n\r\n    </LinearLayout>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_edit_profile.xml	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/res/layout/activity_edit_profile.xml	(date 1604519833876)
+@@ -109,7 +109,6 @@
+             android:id="@+id/btnFinal"
+             android:layout_width="wrap_content"
+             android:layout_height="40dp"
+-            android:layout_marginBottom="5"
+             android:layout_gravity="center_horizontal"
+             android:background="#4C8EDF"
+             android:text="@string/finalize" />
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">WestwoodHomes</string>\r\n    <string name=\"title_home\">Home</string>\r\n    <string name=\"title_dashboard\">Dashboard</string>\r\n    <string name=\"title_notifications\">Notifications</string>\r\n    <string name=\"title_review\">Review</string>\r\n    <string name=\"title_profile\">Profile</string>\r\n    <string name=\"title_profileU\"><u>Profile</u></string>\r\n    <string name=\"title_westwood\"><u>Westwood Homes</u></string>\r\n    <string name=\"news\">News</string>\r\n    <string name=\"upcoming_bills\"><u>Upcoming Bills</u></string>\r\n    <string name=\"bills_rent\">Rent : </string>\r\n    <string name=\"bills_utility\">Utilities : </string>\r\n    <string name=\"bills_internet\">Internet: </string>\r\n\r\n    <string name=\"write_complaint\">Write Complaint</string>\r\n    <string name=\"write_review\">Write Review</string>\r\n    <string name=\"title_writeReview\"><u>Write Review</u></string>\r\n    <string name=\"title_writeComplaint\"><u>Write Complaint</u></string>\r\n    <string name=\"name\">Name : </string>\r\n    <string name=\"surname\">Surname : </string>\r\n    <string name=\"rating\">Rating : </string>\r\n    <string name=\"unit_no\">Unit # : </string>\r\n    <string name=\"submit_review\">Submit Review</string>\r\n    <string name=\"submit_complaint\">Submit Complaint</string>\r\n    <string name=\"profile_name\">Name : </string>\r\n    <string name=\"profile_unit\">Unit : </string>\r\n    <string name=\"profile_family\">Family : </string>\r\n    <string name=\"profile_paidBills\">Paid Bills : </string>\r\n    <string name=\"view_family\">View Family</string>\r\n    <string name=\"view_paidBills\">View Bills</string>\r\n    <string name=\"editProfile\">Edit Profile</string>\r\n    <string name=\"title_unit_info\"><u>Unit Information</u></string>\r\n    <string name=\"unit_bedrooms\">Bedrooms : </string>\r\n    <string name=\"unit_bathrooms\">Bathrooms : </string>\r\n    <string name=\"unit_parking\">Parking Spots : </string>\r\n    <string name=\"addFamily\">Add Family</string>\r\n    <string name=\"finalize\">Finalize</string>\r\n\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"title_activity_edit_profile\">EditProfileActivity</string>\r\n    <!-- Strings used for fragments for navigation -->\r\n    <string name=\"first_fragment_label\">First Fragment</string>\r\n    <string name=\"second_fragment_label\">Second Fragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"previous\">Previous</string>\r\n\r\n    <string name=\"hello_first_fragment\">Hello first fragment</string>\r\n    <string name=\"hello_second_fragment\">Hello second fragment. Arg: %1$s</string>\r\n    <string name=\"title_activity_admin\">AdminActivity</string>\r\n    <string name=\"navigation_drawer_open\">Open navigation drawer</string>\r\n    <string name=\"navigation_drawer_close\">Close navigation drawer</string>\r\n    <string name=\"nav_header_title\">Android Studio</string>\r\n    <string name=\"nav_header_subtitle\">android.studio@android.com</string>\r\n    <string name=\"nav_header_desc\">Navigation header</string>\r\n    <string name=\"action_settings\">Settings</string>\r\n\r\n    <string name=\"menu_home\">Home</string>\r\n    <string name=\"menu_gallery\">Gallery</string>\r\n    <string name=\"menu_slideshow\">Slideshow</string>\r\n\r\n    <string name=\"home_second\">Home Second</string>\r\n    <string name=\"title_activity_login\">LoginActivity</string>\r\n    <string name=\"Loginbutt\"><u>Login</u></string>\r\n    <string name=\"title_admin_add_bill\">Add Bill</string>\r\n    <string name=\"title_admin_add_unit\">Add Unit</string>\r\n    <string name=\"title_admin_bill\">Bills</string>\r\n    <string name=\"title_admin_complaint\">Complaints</string>\r\n    <string name=\"title_admin_news\">News</string>\r\n    <string name=\"title_admin_residents\">Residents</string>\r\n    <string name=\"title_admin_review\">Reviews</string>\r\n    <string name=\"title_admin_unit\">Units</string>\r\n    <string name=\"admin_add_news\">Add News</string>\r\n</resources>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision a6c3d67f0efde24e2b0fc3996704c5a6dfb54ad2)
++++ app/src/main/res/values/strings.xml	(date 1604523374686)
+@@ -7,7 +7,7 @@
+     <string name="title_profile">Profile</string>
+     <string name="title_profileU"><u>Profile</u></string>
+     <string name="title_westwood"><u>Westwood Homes</u></string>
+-    <string name="news">News</string>
++    <string name="news"><u>News</u></string>
+     <string name="upcoming_bills"><u>Upcoming Bills</u></string>
+     <string name="bills_rent">Rent : </string>
+     <string name="bills_utility">Utilities : </string>
+@@ -62,6 +62,7 @@
+ 
+     <string name="home_second">Home Second</string>
+     <string name="title_activity_login">LoginActivity</string>
++
+     <string name="Loginbutt"><u>Login</u></string>
+     <string name="title_admin_add_bill">Add Bill</string>
+     <string name="title_admin_add_unit">Add Unit</string>
