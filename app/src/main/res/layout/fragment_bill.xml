@@ -13,21 +13,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingLeft="15dp"
-            android:text="@string/title_admin_bill"
-            android:textColor="#090606"
-            android:textSize="24dp" />
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF">
-
-        </ListView>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
+                android:hint="Bill Type"
                 android:paddingLeft="15dp" />
 
             <EditText
@@ -55,7 +41,16 @@
                 android:layout_height="50dp"
                 android:background="#FFFFFF"
                 android:inputType="numberDecimal"
+                android:hint="Amount"
                 android:paddingLeft="15dp" />
+
+            <Spinner
+                android:id="@+id/bill_user"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:paddingLeft="15dp"
+                />
 
             <DatePicker
                 android:id="@+id/bill_date"

@@ -5,14 +5,14 @@ import java.util.Date;
 public class Bill {
     private String Type;
     private double Amount;
-    private Date DateIssued;
+    private String DateIssued;
     private boolean Paid;
 
     public Bill(){
 
     }
 
-    public Bill(String type, double amount, Date dateIssued){
+    public Bill(String type, double amount, String dateIssued){
         Type = type;
         Amount = amount;
         DateIssued = dateIssued;
@@ -35,11 +35,11 @@ public class Bill {
         Amount = amount;
     }
 
-    public Date getDateIssued() {
+    public String getDateIssued() {
         return DateIssued;
     }
 
-    public void setDateIssued(Date dateIssued) {
+    public void setDateIssued(String dateIssued) {
         DateIssued = dateIssued;
     }
 
